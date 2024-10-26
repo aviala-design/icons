@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aviala Icon Demo</title>
+    <script src="./dist/index.js"></script>
+    <style>
+        .icon-demo {
+            margin: 20px;
+        }
+
+        .small-icon {
+            font-size: 16px;
+        }
+
+        .medium-icon {
+            font-size: 24px;
+        }
+
+        .large-icon {
+            font-size: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 默认轮廓模式 -->
+    <div class="icon-demo">
+        <h3>Outline Mode (Default)</h3>
+        <aviala-icon name="user" mode="outline" color="#000000" class="medium-icon"></aviala-icon>
+    </div>
+
+    <!-- 填充模式 -->
+    <div class="icon-demo">
+        <h3>Fill Mode</h3>
+        <aviala-icon name="user" mode="fill" color="#ff0000" class="medium-icon"></aviala-icon>
+    </div>
+
+    <!-- 彩色模式 -->
+    <div class="icon-demo">
+        <h3>Colorful Mode</h3>
+        <aviala-icon name="user" mode="colorful" class="medium-icon"></aviala-icon>
+    </div>
+
+    <!-- 黑色模式 -->
+    <div class="icon-demo">
+        <h3>Black Mode</h3>
+        <aviala-icon name="user" mode="black" class="medium-icon"></aviala-icon>
+    </div>
+
+    <!-- 不同尺寸示例 -->
+    <div class="icon-demo">
+        <h3>Different Sizes</h3>
+        <aviala-icon name="user" class="small-icon"></aviala-icon>
+        <aviala-icon name="user" class="medium-icon"></aviala-icon>
+        <aviala-icon name="user" class="large-icon"></aviala-icon>
+    </div>
+
+    <script>
+        // JavaScript 创建示例
+        const icon = document.createElement('aviala-icon');
+        icon.setAttribute('name', 'user');
+        icon.setAttribute('mode', 'colorful');
+        icon.classList.add('medium-icon');
+        document.body.appendChild(icon);
+    </script>
+</body>
+
+</html>
