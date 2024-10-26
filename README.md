@@ -1,10 +1,10 @@
-![cover](./README/cover.png)
+![cover](https://raw.githubusercontent.com/aviala-design/icons/refs/heads/main/README/cover.png)
 
 <div align="center">
 
 Aviala Design Icons
 
-### A customizable icon library with support for multiple styles.
+# A customizable icon library with support for multiple styles.
 </div>
 
 ---
