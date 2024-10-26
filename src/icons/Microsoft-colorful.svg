@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 48 48" fill="none">
+<path d="M22 4L4 4L4 22L22 22L22 4Z" fill-rule="evenodd"  fill="#FF1A1A" >
+</path>
+<path d="M22 26L4 26L4 44L22 44L22 26Z" fill-rule="evenodd"  fill="#1764FF" >
+</path>
+<path d="M44 4L26 4L26 22L44 22L44 4Z" fill-rule="evenodd"  fill="#0D9E86" >
+</path>
+<path d="M44 26L26 26L26 44L44 44L44 26Z" fill-rule="evenodd"  fill="#FA9E14" >
+</path>
+</svg>

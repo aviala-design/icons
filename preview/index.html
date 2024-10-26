@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aviala Design Icons Demo</title>
+    <style>
+        @font-face {
+            font-family: 'default-ltalic';
+            src: url(./JetBrainsMono-Italic.ttf);
+        }
+
+        @font-face {
+            font-family: 'default';
+            src: url(./JetBrainsMono-Medium.ttf);
+        }
+
+        @font-face {
+            font-family: 'default-semibold-ltalic';
+            src: url(./JetBrainsMono-SemiBoldItalic.ttf);
+        }
+
+        .icon-grid {
+            display: flex;
+            padding: 14px;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: -12px;
+        }
+
+        .icon-card {
+            border-top: 1px solid #eee;
+            padding: 8px 14px;
+            /* border-radius: 8px; */
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: calc(928px - 28px);
+        }
+
+        .icon-display {
+            flex-direction: row;
+            justify-content: flex-start;
+            display: flex;
+            width: 100%;
+        }
+
+        .icon-display div {
+            max-width: calc(108px - 12px);
+            min-width: calc(108px - 12px);
+            padding: 0 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 38px;
+            border-left: 1px solid #eee;
+        }
+
+        .icon-name {
+            font-size: 14px;
+            color: #333;
+            min-width: 248px;
+            text-align: left;
+            font-family: 'default-ltalic';
+        }
+
+        aviala-icon {
+            font-size: 24px;
+        }
+
+        .mode-label {
+            font-size: 12px;
+            color: #666;
+            font-family: 'default';
+        }
+
+        .icon-title {
+            width: calc(928px - 56px);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 22px 28px 6px 28px;
+            background: #ffffff;
+            position: sticky;
+            top: -1px;
+        }
+
+        .icon-title .icon-name {
+            font-family: 'default-semibold-ltalic';
+        }
+
+        .page-title {
+            padding: 22px 28px 6px 28px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(100vw - 72px);
+        }
+
+        h4 {
+            font-family: 'default';
+            font-size: 16px;
+            opacity: 0.7;
+        }
+
+        h2 {
+            font-family: 'default-ltalic';
+            font-size: 26px;
+        }
+
+        p {
+            font-family: 'default';
+            font-size: 14px;
+            opacity: 0.4;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-title">
+        <h4>Aviala Design Icons</h4>
+        <h2>A customizable icon library with support for multiple styles.</h2>
+        <p>version 1.0.3</p>
+    </div>
+    <div class="icon-title">
+        <div class="icon-name">Icon Name / Mode</div>
+        <div class="icon-display">
+            <div class="mode-label">outline</div>
+            <div class="mode-label">fill</div>
+            <div class="mode-label">colorful</div>
+            <div class="mode-label">fill-colorful</div>
+            <div class="mode-label">black</div>
+            <div class="mode-label">fill-black</div>
+        </div>
+    </div>
+    <div class="icon-grid" id="iconGrid"></div>
+
+    <script src="../dist/index.js"></script>
+    <script>
+        function initializeDemo() {
+            // Get icon info without console logging
+            const iconInfo = listAvialaIcons(false); // Pass false to prevent logging
+            const grid = document.getElementById('iconGrid');
+            const modeOrder = ['outline', 'fill', 'colorful', 'fill-colorful', 'black', 'fill-black'];
+
+            iconInfo.icons.forEach(icon => {
+                const card = document.createElement('div');
+                card.className = 'icon-card';
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'icon-name';
+                nameDiv.textContent = icon.name;
+
+                const displayDiv = document.createElement('div');
+                displayDiv.className = 'icon-display';
+
+                // Sort modes according to the specified order
+                const sortedModes = modeOrder.filter(mode => icon.modes.includes(mode));
+
+                sortedModes.forEach(mode => {
+                    const modeContainer = document.createElement('div');
+
+                    const iconElement = document.createElement('aviala-icon');
+                    iconElement.setAttribute('name', icon.name);
+                    iconElement.setAttribute('mode', mode);
+
+                    modeContainer.appendChild(iconElement);
+                    displayDiv.appendChild(modeContainer);
+                });
+
+                card.appendChild(nameDiv);
+                card.appendChild(displayDiv);
+                grid.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeDemo);
+
+        const titleBox = document.querySelector(".page-title");
+        const body = document.querySelector("body");
+
+        document.addEventListener("scroll", function (e) {
+            const negativeValue = body.getBoundingClientRect().left;
+            const positiveValue = Math.abs(negativeValue);
+            // console.log(`${positiveValue}, ${negativeValue}`);
+
+            const maxLeftValue = window.innerWidth * 2;
+            titleBox.style.left = `${Math.min(positiveValue, maxLeftValue)}px`;
+        });
+
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                const { height } = entry.contentRect;
+                // console.log(`Element's height changed to: ${height}px`);
+
+                body.style.paddingTop = `calc(${height}px + 32px)`;
+            }
+        });
+
+        resizeObserver.observe(titleBox);
+    </script>
+</body>
+
+</html>

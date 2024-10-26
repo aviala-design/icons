@@ -1,16 +1,23 @@
-# Icons
+![cover](./README/cover.png)
 
-A customizable icon library with support for multiple styles.
+<div align="center">
 
-## Installation
+Aviala Design Icons
+
+### A customizable icon library with support for multiple styles.
+</div>
+
+---
+
+### Installation
 
 ```bash
-npm install @your-scope/aviala-icon
+npm install @aviala-design/icons
 # or
-npm install aviala-icon
+yarn add @aviala-design/icons
 ```
 
-## Uesd
+### Uesd
 
 ```html
 <aviala-icon name="user" mode="fill" color="#ff0000" class="medium-icon"></aviala-icon>
@@ -22,8 +29,15 @@ icon.setAttribute('mode', 'colorful');
 icon.classList.add('medium-icon');
 document.body.appendChild(icon);
 ```
-#### Export All Icons Name At Console
+---
+#### Output Icons Name At Console
+Output the icon name and supported attributes on the console to facilitate viewing of currently supported icons.
 
-```javascript
+```bash
 listAvialaIcons();
+```
+The output content should be like this:
+```bash
+> user
+Available modes: black, colorful, fill, outline
 ```

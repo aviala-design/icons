@@ -8,13 +8,42 @@ if (!fs.existsSync(distDir)) {
     fs.mkdirSync(distDir);
 }
 
+// function parseIconName(filename) {
+//     const baseName = path.basename(filename, '.svg');
+//     const parts = baseName.split('-');
+//     const mode = parts[parts.length - 1];
+
+//     const modes = ['outline', 'fill', 'colorful', 'black', 'fill-colorful', 'fill-black'];  // Added both new modes
+//     const hasMode = modes.includes(mode);
+
+//     const name = hasMode ? parts.slice(0, -1).join('-') : baseName;
+
+//     return {
+//         name,
+//         mode: hasMode ? mode : 'outline'
+//     };
+// }
+
 function parseIconName(filename) {
     const baseName = path.basename(filename, '.svg');
     const parts = baseName.split('-');
-    const mode = parts[parts.length - 1];
 
-    const modes = ['outline', 'fill', 'colorful', 'black'];
-    const hasMode = modes.includes(mode);
+    // Define all possible modes including compound modes
+    const modes = ['outline', 'fill', 'colorful', 'black', 'fill-colorful', 'fill-black'];
+
+    // First try to match compound modes
+    const compoundModes = modes.filter(mode => mode.includes('-'));
+    for (const mode of compoundModes) {
+        if (baseName.endsWith(mode)) {
+            const name = baseName.slice(0, -(mode.length + 1)); // +1 for the extra hyphen
+            return { name, mode };
+        }
+    }
+
+    // Then try simple modes
+    const mode = parts[parts.length - 1];
+    const simpleModes = modes.filter(mode => !mode.includes('-'));
+    const hasMode = simpleModes.includes(mode);
 
     const name = hasMode ? parts.slice(0, -1).join('-') : baseName;
 
@@ -23,6 +52,7 @@ function parseIconName(filename) {
         mode: hasMode ? mode : 'outline'
     };
 }
+
 
 // function convertSvgToJs() {
 //     const icons = {};
@@ -120,11 +150,11 @@ function generateJsFile(icons) {
     const jsContent = `
       const icons = ${JSON.stringify(icons, null, 2)};
       
-      // 添加获取图标信息的函数
       function listAllIcons() {
-        console.group('Available Icons:');
+        const totalIcons = Object.keys(icons).length;
+        console.groupCollapsed('%cAviala Design Icons ^1.0.3', 'color: gray; font-weight: normal', '\\nAvailable Icons total:', totalIcons);
         Object.entries(icons).forEach(([iconName, modes]) => {
-          console.group(\`🔹 \${iconName}\`);
+          console.groupCollapsed(\`🔹 \${iconName}\`);
           const availableModes = Object.keys(modes);
           console.log(\`Available modes: \${availableModes.join(', ')}\`);
           console.groupEnd();
@@ -132,15 +162,14 @@ function generateJsFile(icons) {
         console.groupEnd();
         
         return {
-          total: Object.keys(icons).length,
+          total: totalIcons,
           icons: Object.entries(icons).map(([name, modes]) => ({
             name,
             modes: Object.keys(modes)
           }))
         };
       }
-
-      class AvialaIcon extends HTMLElement {
+        class AvialaIcon extends HTMLElement {
         constructor() {
           super();
           this.attachShadow({ mode: 'open' });
@@ -161,18 +190,20 @@ function generateJsFile(icons) {
   
           const iconSet = icons[name];
           if (!iconSet) {
-            console.warn(\`Icon "\${name}" not found\`);
+            console.error("Icon '" + name + "' not found / 没有找到 '" + name + "' 图标");
             return;
           }
-  
+
           let useMode = requestedMode;
+  
           if (!iconSet[useMode]) {
+            console.warn("Mode '" + useMode + "' not found for '" + name + "', falling back to outline mode / '" + name + "' 图标没有找到样式 '" + useMode + "', 已回退为描边样式");
             useMode = 'outline';
           }
   
           const icon = iconSet[useMode];
           if (!icon) {
-            console.warn(\`No valid icon found for "\${name}"\`);
+            console.warn("No valid icon found for '" + name + "' / 没有找到有效的 '" + name + "' 图标");
             return;
           }
   
@@ -188,14 +219,12 @@ function generateJsFile(icons) {
             
             switch(useMode) {
               case 'outline':
-                // Outline 模式：设置描边颜色，移除填充
                 if (attributes.fill === 'currentColor' || !attributes.stroke) {
                   attributes.fill = color;
                 }
                 break;
                 
               case 'fill':
-                // Fill 模式：设置填充颜色，移除描边
                 if (attributes.fill === 'currentColor' || !attributes.fill) {
                   attributes.fill = color;
                 }
@@ -203,13 +232,23 @@ function generateJsFile(icons) {
                 delete attributes['stroke-width'];
                 break;
                 
+              case 'fill-colorful':
+                // Keep original colors but ensure filled style
+                delete attributes.stroke;
+                delete attributes['stroke-width'];
+                break;
+                
+              case 'fill-black':
+                // Force black fill and remove strokes
+                attributes.fill = '#000000';
+                delete attributes.stroke;
+                delete attributes['stroke-width'];
+                break;
+                
               case 'colorful':
               case 'black':
-                // Colorful 和 Black 模式：保持原始颜色
                 break;
-            }
-            
-            // 应用属性到路径元素
+            }            // 应用属性到路径元素
             Object.entries(attributes).forEach(([key, value]) => {
               path.setAttribute(key, value);
             });
