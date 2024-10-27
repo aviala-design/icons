@@ -2,12 +2,12 @@
 
 <div align="center">
 
-Aviala Design Icons
+##### Aviala Design Icons
 
 # A customizable icon library with support for multiple styles.
-</div>
 
----
+There are *1000+* icons available.
+</div>
 
 ### Installation
 
