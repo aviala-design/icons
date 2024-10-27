@@ -2,14 +2,16 @@
 
 <div align="center">
 
-##### Aviala Design Icons
+**Aviala Design Icons**
 
 # A customizable icon library with support for multiple styles.
 
-There are *1000+* icons available.
+There are ***1000+*** icons available  
+Now can get it on [npm](https://www.npmjs.com/package/@aviala-design/icons)
 </div>
-
-### Installation
+  
+  
+## Installation
 
 ```bash
 npm install @aviala-design/icons
@@ -17,7 +19,7 @@ npm install @aviala-design/icons
 yarn add @aviala-design/icons
 ```
 
-### Uesd
+## Uesd
 
 ```html
 <aviala-icon name="user" mode="fill" color="#ff0000" class="medium-icon"></aviala-icon>
@@ -29,7 +31,7 @@ icon.setAttribute('mode', 'colorful');
 icon.classList.add('medium-icon');
 document.body.appendChild(icon);
 ```
----
+
 #### Output Icons Name At Console
 Output the icon name and supported attributes on the console to facilitate viewing of currently supported icons.
 
