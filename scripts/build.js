@@ -30,12 +30,21 @@ function parseIconName(filename) {
 
     // Define all possible modes including compound modes
     const modes = ['outline', 'fill', 'colorful', 'black', 'fill-colorful', 'fill-black'];
+    
+    // Add special handling for Colorful-A and Colorful-B patterns
+    const colorfulVariantMatch = baseName.match(/(colorful-[A-Z])$/i);
+    if (colorfulVariantMatch) {
+        const mode = colorfulVariantMatch[1].toLowerCase();
+        const name = baseName.slice(0, -(mode.length + 1)); // +1 for the hyphen
+        return { name, mode };
+    }
 
     // First try to match compound modes
     const compoundModes = modes.filter(mode => mode.includes('-'));
     for (const mode of compoundModes) {
         if (baseName.endsWith(mode)) {
-            const name = baseName.slice(0, -(mode.length + 1)); // +1 for the extra hyphen
+
+            const name = baseName.slice(0, -(mode.length + 1));
             return { name, mode };
         }
     }
@@ -51,8 +60,8 @@ function parseIconName(filename) {
         name,
         mode: hasMode ? mode : 'outline'
     };
-}
 
+}
 
 // function convertSvgToJs() {
 //     const icons = {};

@@ -38,25 +38,38 @@
             align-items: center;
             width: calc(928px - 28px);
         }
+          .icon-display {
+              flex-direction: row;
+              justify-content: flex-start;
+              display: flex;
+              width: 100%;
+          }
 
-        .icon-display {
-            flex-direction: row;
-            justify-content: flex-start;
-            display: flex;
-            width: 100%;
-        }
+          .icon-display div {
+              max-width: calc(108px - 12px);
+              min-width: calc(108px - 12px);
+              padding: 0 6px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 38px;
+              border-left: 1px solid #eee;
+              text-align: center;
+          }
 
-        .icon-display div {
-            max-width: calc(108px - 12px);
-            min-width: calc(108px - 12px);
-            padding: 0 6px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 38px;
-            border-left: 1px solid #eee;
-        }
+          .icon-display .colorful-variant {
+              position: relative;
+          }
 
+          .icon-display .colorful-variant::after {
+              content: attr(data-variant);
+              position: absolute;
+              bottom: 2px;
+              right: 2px;
+              font-size: 10px;
+              color: #999;
+              font-family: 'default';
+          }
         .icon-name {
             font-size: 14px;
             color: #333;
@@ -134,9 +147,10 @@
             <div class="mode-label">outline</div>
             <div class="mode-label">fill</div>
             <div class="mode-label">colorful</div>
-            <div class="mode-label">fill-colorful</div>
+            <div class="mode-label">colorful variants</div>
             <div class="mode-label">black</div>
             <div class="mode-label">fill-black</div>
+            <div class="mode-label">fill-colorful</div>
         </div>
     </div>
     <div class="icon-grid" id="iconGrid"></div>
@@ -144,10 +158,8 @@
     <script src="../dist/index.js"></script>
     <script>
         function initializeDemo() {
-            // Get icon info without console logging
-            const iconInfo = listAvialaIcons(false); // Pass false to prevent logging
+            const iconInfo = listAvialaIcons(false);
             const grid = document.getElementById('iconGrid');
-            const modeOrder = ['outline', 'fill', 'colorful', 'fill-colorful', 'black', 'fill-black'];
 
             iconInfo.icons.forEach(icon => {
                 const card = document.createElement('div');
@@ -155,22 +167,45 @@
 
                 const nameDiv = document.createElement('div');
                 nameDiv.className = 'icon-name';
-                nameDiv.textContent = icon.name;
+                nameDiv.textContent = `${icon.name} (${icon.modes.join(', ')})`;
 
                 const displayDiv = document.createElement('div');
                 displayDiv.className = 'icon-display';
 
-                // Sort modes according to the specified order
-                const sortedModes = modeOrder.filter(mode => icon.modes.includes(mode));
-
-                sortedModes.forEach(mode => {
+                // 基础模式展示
+                ['outline', 'fill', 'colorful'].forEach(mode => {
                     const modeContainer = document.createElement('div');
+                    if (icon.modes.includes(mode)) {
+                        const iconElement = document.createElement('aviala-icon');
+                        iconElement.setAttribute('name', icon.name);
+                        iconElement.setAttribute('mode', mode);
+                        modeContainer.appendChild(iconElement);
+                    }
+                    displayDiv.appendChild(modeContainer);
+                });
 
-                    const iconElement = document.createElement('aviala-icon');
-                    iconElement.setAttribute('name', icon.name);
-                    iconElement.setAttribute('mode', mode);
+                // Colorful 变体展示
+                const variantsContainer = document.createElement('div');
+                const colorfulVariants = icon.modes.filter(mode => mode.startsWith('colorful-'));
+                if (colorfulVariants.length > 0) {
+                    colorfulVariants.forEach(variant => {
+                        const variantElement = document.createElement('aviala-icon');
+                        variantElement.setAttribute('name', icon.name);
+                        variantElement.setAttribute('mode', variant);
+                        variantsContainer.appendChild(variantElement);
+                    });
+                }
+                displayDiv.appendChild(variantsContainer);
 
-                    modeContainer.appendChild(iconElement);
+                // 其他模式展示
+                ['black', 'fill-black', 'fill-colorful'].forEach(mode => {
+                    const modeContainer = document.createElement('div');
+                    if (icon.modes.includes(mode)) {
+                        const iconElement = document.createElement('aviala-icon');
+                        iconElement.setAttribute('name', icon.name);
+                        iconElement.setAttribute('mode', mode);
+                        modeContainer.appendChild(iconElement);
+                    }
                     displayDiv.appendChild(modeContainer);
                 });
 
@@ -179,7 +214,6 @@
                 grid.appendChild(card);
             });
         }
-
         document.addEventListener('DOMContentLoaded', initializeDemo);
 
         const titleBox = document.querySelector(".page-title");
@@ -188,8 +222,6 @@
         document.addEventListener("scroll", function (e) {
             const negativeValue = body.getBoundingClientRect().left;
             const positiveValue = Math.abs(negativeValue);
-            // console.log(`${positiveValue}, ${negativeValue}`);
-
             const maxLeftValue = window.innerWidth * 2;
             titleBox.style.left = `${Math.min(positiveValue, maxLeftValue)}px`;
         });
@@ -197,8 +229,6 @@
         const resizeObserver = new ResizeObserver(entries => {
             for (let entry of entries) {
                 const { height } = entry.contentRect;
-                // console.log(`Element's height changed to: ${height}px`);
-
                 body.style.paddingTop = `calc(${height}px + 32px)`;
             }
         });
