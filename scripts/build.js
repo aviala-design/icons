@@ -8,22 +8,6 @@ if (!fs.existsSync(distDir)) {
     fs.mkdirSync(distDir);
 }
 
-// function parseIconName(filename) {
-//     const baseName = path.basename(filename, '.svg');
-//     const parts = baseName.split('-');
-//     const mode = parts[parts.length - 1];
-
-//     const modes = ['outline', 'fill', 'colorful', 'black', 'fill-colorful', 'fill-black'];  // Added both new modes
-//     const hasMode = modes.includes(mode);
-
-//     const name = hasMode ? parts.slice(0, -1).join('-') : baseName;
-
-//     return {
-//         name,
-//         mode: hasMode ? mode : 'outline'
-//     };
-// }
-
 function parseIconName(filename) {
     const baseName = path.basename(filename, '.svg');
     const parts = baseName.split('-');
@@ -62,98 +46,69 @@ function parseIconName(filename) {
     };
 
 }
+  function convertSvgToJs() {
+      const icons = {};
 
-// function convertSvgToJs() {
-//     const icons = {};
+      fs.readdirSync(svgDir).forEach((file) => {
+          if (path.extname(file) === '.svg') {
+              const svgContent = fs.readFileSync(
+                  path.join(svgDir, file),
+                  'utf-8'
+              );
 
-//     fs.readdirSync(svgDir).forEach((file) => {
-//         if (path.extname(file) === '.svg') {
-//             const svgContent = fs.readFileSync(
-//                 path.join(svgDir, file),
-//                 'utf-8'
-//             );
+              const { name, mode } = parseIconName(file);
 
-//             const { name, mode } = parseIconName(file);
+              const viewBoxMatch = svgContent.match(/viewBox="([^"]+)"/);
+              const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 24 24';
 
-//             const viewBoxMatch = svgContent.match(/viewBox="([^"]+)"/);
-//             const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 24 24';
+              const paths = [];
+              const pathRegex = /<path([^>]+)>/g;
+              let match;
 
-//             const paths = [];
-//             const pathRegex = /<path([^>]+)>/g;
-//             let match;
+              while ((match = pathRegex.exec(svgContent)) !== null) {
+                  const attributes = {};
+                  const attrRegex = /(\w+)="([^"]+)"/g;
+                  let attrMatch;
 
-//             while ((match = pathRegex.exec(svgContent)) !== null) {
-//                 const attributes = {};
-//                 const attrRegex = /(\w+)="([^"]+)"/g;
-//                 let attrMatch;
+                  while ((attrMatch = attrRegex.exec(match[1])) !== null) {
+                      const attrName = attrMatch[1] === 'rule' ? 'fill-rule' : attrMatch[1];
+                      let attrValue = attrMatch[2];
+                    
+                      // 处理黑色主题的颜色转换
+                      if (attrName === 'fill') {
+                          if (mode === 'fill-black' || mode === 'black') {
+                              if (attrValue === '#424242') {
+                                  attrValue = 'currentColor';
+                              } else if (attrValue === '#787878') {
+                                  attrValue = 'currentColor';
+                                  attributes['fill-opacity'] = '0.53'; // Add 53% opacity
+                              } else if (attrValue === '#FFFFFF') {
+                                  attrValue = '#FFFFFF'; // Keep white color
+                              }
+                          } else if (attrValue === '#FFFFFF') {
+                              attrValue = '#FFFFFF'; // Keep white color in all other modes
+                          }
+                      }
+                    
+                      attributes[attrName] = attrValue;
+                  }
 
-//                 while ((attrMatch = attrRegex.exec(match[1])) !== null) {
-//                     attributes[attrMatch[1]] = attrMatch[2];
-//                 }
+                  paths.push(attributes);
+              }
 
-//                 paths.push(attributes);
-//             }
+              if (!icons[name]) {
+                  icons[name] = {};
+              }
 
-//             if (!icons[name]) {
-//                 icons[name] = {};
-//             }
+              icons[name][mode] = {
+                  viewBox,
+                  paths
+              };
+          }
+      });
 
-//             icons[name][mode] = {
-//                 viewBox,
-//                 paths
-//             };
-//         }
-//     });
-
-//     return icons;
-// }
-
-function convertSvgToJs() {
-    const icons = {};
-
-    fs.readdirSync(svgDir).forEach((file) => {
-        if (path.extname(file) === '.svg') {
-            const svgContent = fs.readFileSync(
-                path.join(svgDir, file),
-                'utf-8'
-            );
-
-            const { name, mode } = parseIconName(file);
-
-            const viewBoxMatch = svgContent.match(/viewBox="([^"]+)"/);
-            const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 24 24';
-
-            const paths = [];
-            const pathRegex = /<path([^>]+)>/g;
-            let match;
-
-            while ((match = pathRegex.exec(svgContent)) !== null) {
-                const attributes = {};
-                const attrRegex = /(\w+)="([^"]+)"/g;
-                let attrMatch;
-
-                while ((attrMatch = attrRegex.exec(match[1])) !== null) {
-                    // 将 rule 属性转换为 fill-rule
-                    const attrName = attrMatch[1] === 'rule' ? 'fill-rule' : attrMatch[1];
-                    attributes[attrName] = attrMatch[2];
-                }
-
-                paths.push(attributes);
-            }
-
-            if (!icons[name]) {
-                icons[name] = {};
-            }
-
-            icons[name][mode] = {
-                viewBox,
-                paths
-            };
-        }
-    });
-
-    return icons;
-}
+      return icons;
+  }
 
 function generateJsFile(icons) {
     const jsContent = `
@@ -226,38 +181,38 @@ function generateJsFile(icons) {
             // 创建一个新的属性对象，避免修改原始数据
             const attributes = { ...pathData };
             
-            switch(useMode) {
+          switch(useMode) {
               case 'outline':
-                if (attributes.fill === 'currentColor' || !attributes.stroke) {
-                  attributes.fill = color;
-                }
-                break;
-                
+                  if (attributes.fill === 'currentColor' || (!attributes.stroke && attributes.fill !== '#FFFFFF')) {
+                      attributes.fill = color;
+                  }
+                  break;
+                    
               case 'fill':
-                if (attributes.fill === 'currentColor' || !attributes.fill) {
-                  attributes.fill = color;
-                }
-                delete attributes.stroke;
-                delete attributes['stroke-width'];
-                break;
-                
+                  if (attributes.fill === 'currentColor' || (!attributes.fill && attributes.fill !== '#FFFFFF')) {
+                      attributes.fill = color;
+                  }
+                  delete attributes.stroke;
+                  delete attributes['stroke-width'];
+                  break;
+                    
               case 'fill-colorful':
-                // Keep original colors but ensure filled style
-                delete attributes.stroke;
-                delete attributes['stroke-width'];
-                break;
-                
-              case 'fill-black':
-                // Force black fill and remove strokes
-                attributes.fill = '#000000';
-                delete attributes.stroke;
-                delete attributes['stroke-width'];
-                break;
-                
               case 'colorful':
+                  // 保持原始颜色
+                  break;
+                    
+              case 'fill-black':
               case 'black':
-                break;
-            }            // 应用属性到路径元素
+                  if (attributes.fill !== '#FFFFFF') {
+                      // 只在非白色的情况下应用颜色变换
+                      if (attributes.fill === 'currentColor') {
+                          attributes.fill = color;
+                      }
+                  }
+                  delete attributes.stroke;
+                  delete attributes['stroke-width'];
+                  break;
+          }            // 应用属性到路径元素
             Object.entries(attributes).forEach(([key, value]) => {
               path.setAttribute(key, value);
             });
