@@ -14,7 +14,7 @@ const Exchange_commentIcon = {
       {
         "d": "M12 23C12 24.1046 12.8954 25 14 25L34 25C35.1046 25 36 24.1046 36 23C36 21.8954 35.1046 21 34 21L14 21C12.8954 21 12 21.8954 12 23Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       }
     ]

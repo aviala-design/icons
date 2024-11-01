@@ -81,7 +81,7 @@ function convertSvgToJs() {
                                 attrValue = 'currentColor';
                             } else if (attrValue === '#787878') {
                                 attrValue = 'currentColor';
-                                attributes['fill-opacity'] = '0.53'; // Add 53% opacity
+                                attributes['fill-opacity'] = '0.71'; // Add 71% opacity
                             } else if (attrValue === '#FFFFFF') {
                                 attrValue = '#FFFFFF'; // Keep white color
                             }

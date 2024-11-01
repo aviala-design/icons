@@ -10,19 +10,19 @@ const Develop_botIcon = {
       {
         "d": "M14 9C14 10.1046 14.8954 11 16 11L32 11C33.1046 11 34 10.1046 34 9C34 7.89543 33.1046 7 32 7L16 7C14.8954 7 14 7.89543 14 9Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M20 25L20 29C20 30.1046 19.1046 31 18 31C16.8954 31 16 30.1046 16 29L16 25C16 23.8954 16.8954 23 18 23C19.1046 23 20 23.8954 20 25Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M32 25L32 29C32 30.1046 31.1046 31 30 31C28.8954 31 28 30.1046 28 29L28 25C28 23.8954 28.8954 23 30 23C31.1046 23 32 23.8954 32 25Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       }
     ]

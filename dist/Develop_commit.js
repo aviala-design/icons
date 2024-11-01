@@ -5,13 +5,13 @@ const Develop_commitIcon = {
       {
         "d": "M3 24C3 25.1046 3.89543 26 5 26L17 26C18.1046 26 19 25.1046 19 24C19 22.8954 18.1046 22 17 22L5 22C3.89543 22 3 22.8954 3 24Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M29 24C29 25.1046 29.8954 26 31 26L43 26C44.1046 26 45 25.1046 45 24C45 22.8954 44.1046 22 43 22L31 22C29.8954 22 29 22.8954 29 24Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {

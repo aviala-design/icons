@@ -150,7 +150,7 @@ import { Edit_save } from './Edit_save.js';
 import { Edit_selectAll } from './Edit_selectAll.js';
 import { Edit_shear } from './Edit_shear.js';
 import { Edit_slice } from './Edit_slice.js';
-import { Edit_Split_line } from './Edit_Split_line.js';
+import { Edit_splitLine } from './Edit_splitLine.js';
 import { Edit_startAfter } from './Edit_startAfter.js';
 import { Edit_startedBefore } from './Edit_startedBefore.js';
 import { Edit_straightLine } from './Edit_straightLine.js';
@@ -178,6 +178,7 @@ import { Equipment_batteryNotFound } from './Equipment_batteryNotFound.js';
 import { Equipment_batteryWorking_fill_2 } from './Equipment_batteryWorking_fill_2.js';
 import { Equipment_camera } from './Equipment_camera.js';
 import { Equipment_cameraDisabled } from './Equipment_cameraDisabled.js';
+import { Equipment_camera_black } from './Equipment_camera_black.js';
 import { Equipment_Computer } from './Equipment_Computer.js';
 import { Equipment_ComputerWithPad } from './Equipment_ComputerWithPad.js';
 import { Equipment_ComputerWithPhone } from './Equipment_ComputerWithPhone.js';
@@ -188,6 +189,7 @@ import { Equipment_keyboard } from './Equipment_keyboard.js';
 import { Equipment_Laptop } from './Equipment_Laptop.js';
 import { Equipment_microphone } from './Equipment_microphone.js';
 import { Equipment_microphoneDisabled } from './Equipment_microphoneDisabled.js';
+import { Equipment_microphone_black } from './Equipment_microphone_black.js';
 import { Equipment_mouse } from './Equipment_mouse.js';
 import { Equipment_Pad } from './Equipment_Pad.js';
 import { Equipment_PadWithPhone } from './Equipment_PadWithPhone.js';
@@ -195,10 +197,12 @@ import { Equipment_Phone } from './Equipment_Phone.js';
 import { Equipment_Printer } from './Equipment_Printer.js';
 import { Equipment_recordingCamera } from './Equipment_recordingCamera.js';
 import { Equipment_recordingCameraDisabled } from './Equipment_recordingCameraDisabled.js';
+import { Equipment_recordingCamera_black } from './Equipment_recordingCamera_black.js';
 import { Equipment_Router } from './Equipment_Router.js';
 import { Equipment_Speaker } from './Equipment_Speaker.js';
 import { Equipment_tv } from './Equipment_tv.js';
 import { Equipment_usbDrive } from './Equipment_usbDrive.js';
+import { Equipment_usbDrive_black } from './Equipment_usbDrive_black.js';
 import { Equipment_vr } from './Equipment_vr.js';
 import { Equipment_watch } from './Equipment_watch.js';
 import { Equipment_watchRound } from './Equipment_watchRound.js';
@@ -218,7 +222,6 @@ import { Files_compressedPacket } from './Files_compressedPacket.js';
 import { Files_docFolder } from './Files_docFolder.js';
 import { Files_docxFile } from './Files_docxFile.js';
 import { Files_EMF } from './Files_EMF.js';
-import { Files_file_black } from './Files_file_black.js';
 import { Files_file } from './Files_file.js';
 import { Files_files } from './Files_files.js';
 import { Files_folder } from './Files_folder.js';
@@ -327,24 +330,34 @@ import { Pay_moneyRMB } from './Pay_moneyRMB.js';
 import { Pay_pay } from './Pay_pay.js';
 import { Pay_redEnvelope } from './Pay_redEnvelope.js';
 import { Pay_wallet } from './Pay_wallet.js';
+import { Safe_certificate_colorful } from './Safe_certificate_colorful.js';
 import { Safe_certificate } from './Safe_certificate.js';
 import { Safe_globalVpn } from './Safe_globalVpn.js';
+import { Safe_harassmentInterception_colorful } from './Safe_harassmentInterception_colorful.js';
 import { Safe_harassmentInterception } from './Safe_harassmentInterception.js';
+import { Safe_key_colorful } from './Safe_key_colorful.js';
 import { Safe_key } from './Safe_key.js';
+import { Safe_lock_colorful } from './Safe_lock_colorful.js';
 import { Safe_lock } from './Safe_lock.js';
+import { Safe_locked_colorful } from './Safe_locked_colorful.js';
 import { Safe_locked } from './Safe_locked.js';
 import { Safe_mailPrivacy } from './Safe_mailPrivacy.js';
 import { Safe_messagePrivacy } from './Safe_messagePrivacy.js';
 import { Safe_passkey } from './Safe_passkey.js';
-import { Safe_personalSecurity_1 } from './Safe_personalSecurity_1.js';
 import { Safe_personalSecurity } from './Safe_personalSecurity.js';
 import { Safe_privacy } from './Safe_privacy.js';
+import { Safe_security_colorful } from './Safe_security_colorful.js';
 import { Safe_security } from './Safe_security.js';
+import { Safe_securityFalse_colorful } from './Safe_securityFalse_colorful.js';
 import { Safe_securityFalse } from './Safe_securityFalse.js';
+import { Safe_securityScanning_colorful } from './Safe_securityScanning_colorful.js';
 import { Safe_securityScanning } from './Safe_securityScanning.js';
+import { Safe_securityTure_colorful } from './Safe_securityTure_colorful.js';
 import { Safe_securityTure } from './Safe_securityTure.js';
 import { Safe_strongBox } from './Safe_strongBox.js';
+import { Safe_superSecurity_colorful } from './Safe_superSecurity_colorful.js';
 import { Safe_superSecurity } from './Safe_superSecurity.js';
+import { Safe_unlock_colorful } from './Safe_unlock_colorful.js';
 import { Safe_unlock } from './Safe_unlock.js';
 import { Safe_vpn } from './Safe_vpn.js';
 import { Symbol_add } from './Symbol_add.js';
@@ -396,7 +409,6 @@ import { Symbol_rightCircle } from './Symbol_rightCircle.js';
 import { Symbol_satellite } from './Symbol_satellite.js';
 import { Symbol_select } from './Symbol_select.js';
 import { Symbol_star } from './Symbol_star.js';
-import { Symbol_tips_black } from './Symbol_tips_black.js';
 import { Symbol_tips } from './Symbol_tips.js';
 import { Symbol_ZenMode } from './Symbol_ZenMode.js';
 import { System_mouseArrow } from './System_mouseArrow.js';
@@ -406,6 +418,7 @@ import { System_windowMaximize } from './System_windowMaximize.js';
 import { System_windowMinimize } from './System_windowMinimize.js';
 import { System_windowMinisize2 } from './System_windowMinisize2.js';
 import { System_windowReduction } from './System_windowReduction.js';
+import { Template_template } from './Template_template.js';
 import { TimeAndDate_calendar } from './TimeAndDate_calendar.js';
 import { TimeAndDate_calendarNotice } from './TimeAndDate_calendarNotice.js';
 import { TimeAndDate_calendarNum1 } from './TimeAndDate_calendarNum1.js';
@@ -607,7 +620,7 @@ import { Workdoc_peopleContract } from './Workdoc_peopleContract.js';
             Edit_selectAll: Edit_selectAll,
             Edit_shear: Edit_shear,
             Edit_slice: Edit_slice,
-            Edit_Split_line: Edit_Split_line,
+            Edit_splitLine: Edit_splitLine,
             Edit_startAfter: Edit_startAfter,
             Edit_startedBefore: Edit_startedBefore,
             Edit_straightLine: Edit_straightLine,
@@ -635,6 +648,7 @@ import { Workdoc_peopleContract } from './Workdoc_peopleContract.js';
             Equipment_batteryWorking_fill_2: Equipment_batteryWorking_fill_2,
             Equipment_camera: Equipment_camera,
             Equipment_cameraDisabled: Equipment_cameraDisabled,
+            Equipment_camera_black: Equipment_camera_black,
             Equipment_Computer: Equipment_Computer,
             Equipment_ComputerWithPad: Equipment_ComputerWithPad,
             Equipment_ComputerWithPhone: Equipment_ComputerWithPhone,
@@ -645,6 +659,7 @@ import { Workdoc_peopleContract } from './Workdoc_peopleContract.js';
             Equipment_Laptop: Equipment_Laptop,
             Equipment_microphone: Equipment_microphone,
             Equipment_microphoneDisabled: Equipment_microphoneDisabled,
+            Equipment_microphone_black: Equipment_microphone_black,
             Equipment_mouse: Equipment_mouse,
             Equipment_Pad: Equipment_Pad,
             Equipment_PadWithPhone: Equipment_PadWithPhone,
@@ -652,10 +667,12 @@ import { Workdoc_peopleContract } from './Workdoc_peopleContract.js';
             Equipment_Printer: Equipment_Printer,
             Equipment_recordingCamera: Equipment_recordingCamera,
             Equipment_recordingCameraDisabled: Equipment_recordingCameraDisabled,
+            Equipment_recordingCamera_black: Equipment_recordingCamera_black,
             Equipment_Router: Equipment_Router,
             Equipment_Speaker: Equipment_Speaker,
             Equipment_tv: Equipment_tv,
             Equipment_usbDrive: Equipment_usbDrive,
+            Equipment_usbDrive_black: Equipment_usbDrive_black,
             Equipment_vr: Equipment_vr,
             Equipment_watch: Equipment_watch,
             Equipment_watchRound: Equipment_watchRound,
@@ -675,7 +692,6 @@ import { Workdoc_peopleContract } from './Workdoc_peopleContract.js';
             Files_docFolder: Files_docFolder,
             Files_docxFile: Files_docxFile,
             Files_EMF: Files_EMF,
-            Files_file_black: Files_file_black,
             Files_file: Files_file,
             Files_files: Files_files,
             Files_folder: Files_folder,
@@ -784,24 +800,34 @@ import { Workdoc_peopleContract } from './Workdoc_peopleContract.js';
             Pay_pay: Pay_pay,
             Pay_redEnvelope: Pay_redEnvelope,
             Pay_wallet: Pay_wallet,
+            Safe_certificate_colorful: Safe_certificate_colorful,
             Safe_certificate: Safe_certificate,
             Safe_globalVpn: Safe_globalVpn,
+            Safe_harassmentInterception_colorful: Safe_harassmentInterception_colorful,
             Safe_harassmentInterception: Safe_harassmentInterception,
+            Safe_key_colorful: Safe_key_colorful,
             Safe_key: Safe_key,
+            Safe_lock_colorful: Safe_lock_colorful,
             Safe_lock: Safe_lock,
+            Safe_locked_colorful: Safe_locked_colorful,
             Safe_locked: Safe_locked,
             Safe_mailPrivacy: Safe_mailPrivacy,
             Safe_messagePrivacy: Safe_messagePrivacy,
             Safe_passkey: Safe_passkey,
-            Safe_personalSecurity_1: Safe_personalSecurity_1,
             Safe_personalSecurity: Safe_personalSecurity,
             Safe_privacy: Safe_privacy,
+            Safe_security_colorful: Safe_security_colorful,
             Safe_security: Safe_security,
+            Safe_securityFalse_colorful: Safe_securityFalse_colorful,
             Safe_securityFalse: Safe_securityFalse,
+            Safe_securityScanning_colorful: Safe_securityScanning_colorful,
             Safe_securityScanning: Safe_securityScanning,
+            Safe_securityTure_colorful: Safe_securityTure_colorful,
             Safe_securityTure: Safe_securityTure,
             Safe_strongBox: Safe_strongBox,
+            Safe_superSecurity_colorful: Safe_superSecurity_colorful,
             Safe_superSecurity: Safe_superSecurity,
+            Safe_unlock_colorful: Safe_unlock_colorful,
             Safe_unlock: Safe_unlock,
             Safe_vpn: Safe_vpn,
             Symbol_add: Symbol_add,
@@ -853,7 +879,6 @@ import { Workdoc_peopleContract } from './Workdoc_peopleContract.js';
             Symbol_satellite: Symbol_satellite,
             Symbol_select: Symbol_select,
             Symbol_star: Symbol_star,
-            Symbol_tips_black: Symbol_tips_black,
             Symbol_tips: Symbol_tips,
             Symbol_ZenMode: Symbol_ZenMode,
             System_mouseArrow: System_mouseArrow,
@@ -863,6 +888,7 @@ import { Workdoc_peopleContract } from './Workdoc_peopleContract.js';
             System_windowMinimize: System_windowMinimize,
             System_windowMinisize2: System_windowMinisize2,
             System_windowReduction: System_windowReduction,
+            Template_template: Template_template,
             TimeAndDate_calendar: TimeAndDate_calendar,
             TimeAndDate_calendarNotice: TimeAndDate_calendarNotice,
             TimeAndDate_calendarNum1: TimeAndDate_calendarNum1,

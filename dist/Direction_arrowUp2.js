@@ -5,7 +5,7 @@ const Direction_arrowUp2Icon = {
       {
         "d": "M26.8284 15L38 26.1716C40.5199 28.6914 38.7352 33 35.1716 33L12.8284 33C9.26482 33 7.48012 28.6914 10 26.1716L21.1716 15C22.7337 13.4379 25.2663 13.4379 26.8284 15Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
