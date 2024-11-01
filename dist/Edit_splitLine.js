@@ -1,4 +1,50 @@
-const Edit_Split_lineIcon = {
+const Edit_splitLineIcon = {
+  "black": {
+    "viewBox": "0 0 48 48",
+    "paths": [
+      {
+        "d": "M2.99995 23.9995C2.99992 25.1041 3.89533 25.9995 4.9999 25.9996L42.9999 26.0005C44.1045 26.0006 44.9999 25.1052 45 24.0006C45 22.896 44.1046 22.0006 43 22.0005L5 21.9996C3.89543 21.9995 2.99998 22.8949 2.99995 23.9995Z",
+        "fill-rule": "evenodd",
+        "fill": "currentColor"
+      },
+      {
+        "d": "M3.00003 11.001C3.00005 12.1055 3.8955 13.001 5.00007 13.0009L12.0001 13.0008C13.1046 13.0008 14.0001 12.1054 14 11.0008C14 9.89621 13.1046 9.0008 12 9.00082L5 9.00094C3.89543 9.00096 3.00002 9.89641 3.00003 11.001Z",
+        "fill-rule": "evenodd",
+        "fill-opacity": "0.71",
+        "fill": "currentColor"
+      },
+      {
+        "d": "M34.0001 11.0002C34.0001 12.1048 34.8956 13.0002 36.0001 13.0002L43.0001 12.9999C44.1047 12.9999 45.0001 12.1044 45.0001 10.9999C45 9.89529 44.1046 8.99989 43 8.99993L36 9.00017C34.8954 9.00021 34 9.89567 34.0001 11.0002Z",
+        "fill-rule": "evenodd",
+        "fill-opacity": "0.71",
+        "fill": "currentColor"
+      },
+      {
+        "d": "M3.00007 37.001C3.00011 38.1055 3.89557 39.0009 5.00014 39.0009L12.0001 39.0007C13.1047 39.0006 14.0001 38.1052 14.0001 37.0006C14 35.896 13.1046 35.0006 12 35.0007L5 35.0009C3.89543 35.0009 3.00003 35.8964 3.00007 37.001Z",
+        "fill-rule": "evenodd",
+        "fill-opacity": "0.71",
+        "fill": "currentColor"
+      },
+      {
+        "d": "M18.5001 11.0005C18.5001 12.1051 19.3956 13.0005 20.5001 13.0004L27.5001 13.0002C28.6047 13.0001 29.5001 12.1047 29.5001 11.0001C29.5 9.89553 28.6046 9.00014 27.5 9.00017L20.5 9.00042C19.3954 9.00046 18.5 9.89592 18.5001 11.0005Z",
+        "fill-rule": "evenodd",
+        "fill-opacity": "0.71",
+        "fill": "currentColor"
+      },
+      {
+        "d": "M18.5001 37.0005C18.5001 38.1051 19.3956 39.0005 20.5001 39.0004L27.5001 39.0002C28.6047 39.0001 29.5001 38.1047 29.5001 37.0001C29.5 35.8955 28.6046 35.0001 27.5 35.0002L20.5 35.0004C19.3954 35.0005 18.5 35.8959 18.5001 37.0005Z",
+        "fill-rule": "evenodd",
+        "fill-opacity": "0.71",
+        "fill": "currentColor"
+      },
+      {
+        "d": "M34.0001 37.0002C34.0001 38.1048 34.8956 39.0002 36.0001 39.0002L43.0001 38.9999C44.1047 38.9999 45.0001 38.1044 45.0001 36.9999C45 35.8953 44.1046 34.9999 43 34.9999L36 35.0002C34.8954 35.0002 34 35.8957 34.0001 37.0002Z",
+        "fill-rule": "evenodd",
+        "fill-opacity": "0.71",
+        "fill": "currentColor"
+      }
+    ]
+  },
   "outline": {
     "viewBox": "0 0 48 48",
     "paths": [
@@ -11,11 +57,11 @@ const Edit_Split_lineIcon = {
   }
 };
         
-        export function getEdit_Split_line(mode = 'outline') {
-            return Edit_Split_lineIcon[mode] || Edit_Split_lineIcon['outline'];
+        export function getEdit_splitLine(mode = 'outline') {
+            return Edit_splitLineIcon[mode] || Edit_splitLineIcon['outline'];
         }
         
-        export const Edit_Split_lineModes = Object.keys(Edit_Split_lineIcon);
+        export const Edit_splitLineModes = Object.keys(Edit_splitLineIcon);
         
         // 导出图标数据本身
-        export const Edit_Split_line = Edit_Split_lineIcon;
+        export const Edit_splitLine = Edit_splitLineIcon;

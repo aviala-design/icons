@@ -15,7 +15,7 @@ const Interaction_downloadIcon = {
       {
         "d": "M8 42C8 43.1046 8.89543 44 10 44L38 44C39.1046 44 40 43.1046 40 42C40 40.8954 39.1046 40 38 40L10 40C8.89543 40 8 40.8954 8 42Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       }
     ]

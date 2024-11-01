@@ -5,13 +5,13 @@ const Interaction_themeIcon = {
       {
         "d": "M35 16C35 17.1046 34.1046 18 33 18C31.8954 18 31 17.1046 31 16L31 5C31 3.8954 31.8954 3 33 3C34.1046 3 35 3.8954 35 5L35 16Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M21 29L21 41L27 41L27 29L21 29ZM21 45C18.7909 45 17 43.2091 17 41L17 25L31 25L31 41C31 43.2091 29.2091 45 27 45L21 45Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {

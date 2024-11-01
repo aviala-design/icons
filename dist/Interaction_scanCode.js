@@ -5,47 +5,47 @@ const Interaction_scanCodeIcon = {
       {
         "d": "M12 8L18 8L18 4L12 4C7.58172 4 4 7.58172 4 12L4 17L8 17L8 12C8 9.79086 9.79086 8 12 8ZM36 4L30 4L30 8L36 8C38.2091 8 40 9.79086 40 12L40 17L44 17L44 12C44 7.58172 40.4183 4 36 4ZM8 36L8 31L4 31L4 36C4 40.4183 7.58172 44 12 44L18 44L18 40L12 40C9.79086 40 8 38.2091 8 36ZM36 40L30 40L30 44L36 44C40.4183 44 44 40.4183 44 36L44 31L40 31L40 36C40 38.2091 38.2091 40 36 40Z",
         "fill-rule": "evenodd",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M42 15C40.9 15 40 15.9 40 17C40 18.1 40.9 19 42 19C43.1 19 44 18.1 44 17C44 15.9 43.1 15 42 15Z",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M6 15C4.9 15 4 15.9 4 17C4 18.1 4.9 19 6 19C7.1 19 8 18.1 8 17C8 15.9 7.1 15 6 15Z",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M6 29C4.9 29 4 29.9 4 31C4 32.1 4.9 33 6 33C7.1 33 8 32.1 8 31C8 29.9 7.1 29 6 29Z",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M42 29C40.9 29 40 29.9 40 31C40 32.1 40.9 33 42 33C43.1 33 44 32.1 44 31C44 29.9 43.1 29 42 29Z",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M30 40C28.9 40 28 40.9 28 42C28 43.1 28.9 44 30 44C31.1 44 32 43.1 32 42C32 40.9 31.1 40 30 40Z",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M18 40C16.9 40 16 40.9 16 42C16 43.1 16.9 44 18 44C19.1 44 20 43.1 20 42C20 40.9 19.1 40 18 40Z",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M30 4C28.9 4 28 4.9 28 6C28 7.1 28.9 8 30 8C31.1 8 32 7.1 32 6C32 4.9 31.1 4 30 4Z",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
         "d": "M18 4C16.9 4 16 4.9 16 6C16 7.1 16.9 8 18 8C19.1 8 20 7.1 20 6C20 4.9 19.1 4 18 4Z",
-        "fill-opacity": "0.53",
+        "fill-opacity": "0.71",
         "fill": "currentColor"
       },
       {
