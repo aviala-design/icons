@@ -2,12 +2,13 @@
 
 <div align="center">
 
-**Aviala Design Icons**
+### Aviala Design Icons
 
 # A customizable icon library with support for multiple styles.
 
-There are ***1000+*** icons available  
-Now can get it on [npm](https://www.npmjs.com/package/@aviala-design/icons)
+🎉 There are **𝟷𝟶𝟶𝟶+** icons available 🎉
+
+[`Preview`](aviala-design-icons.github.io) [`Get`](https://www.npmjs.com/package/@aviala-design/icons) [`DesignSources`](https://js.design/community?category=teamHome&id=633a635990e635c1991ee5fb)
 </div>
   
   
@@ -22,7 +23,11 @@ yarn add @aviala-design/icons
 ## Import
 All:
 ```javascript
-import { allIcons, getIcon } from './icons/all.js';
+import { allIcons, getIcon } from 'all.js';
+```
+Some one:
+```javascript
+import { Generic_home } from 'Generic_home.js';
 ```
 
 ## Uesd
@@ -36,11 +41,4 @@ icon.setAttribute('name', 'user');
 icon.setAttribute('mode', 'colorful');
 icon.classList.add('medium-icon');
 document.body.appendChild(icon);
-```
-
-#### Output Icons Name At Console
-Output the icon name and supported attributes on the console to facilitate viewing of currently supported icons.
-
-```bash
-listAvialaIcons();
 ```
