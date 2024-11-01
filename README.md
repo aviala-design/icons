@@ -22,7 +22,11 @@ yarn add @aviala-design/icons
 ## Import
 All:
 ```javascript
-import { allIcons, getIcon } from './icons/all.js';
+import { allIcons, getIcon } from 'all.js';
+```
+Some one:
+```javascript
+import { Generic_home } from 'Generic_home.js';
 ```
 
 ## Uesd
@@ -36,11 +40,4 @@ icon.setAttribute('name', 'user');
 icon.setAttribute('mode', 'colorful');
 icon.classList.add('medium-icon');
 document.body.appendChild(icon);
-```
-
-#### Output Icons Name At Console
-Output the icon name and supported attributes on the console to facilitate viewing of currently supported icons.
-
-```bash
-listAvialaIcons();
 ```
