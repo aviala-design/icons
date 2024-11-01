@@ -8,6 +8,10 @@ jobs:
   build-and-move:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     
     steps:
       - name: Checkout code
@@ -21,6 +25,18 @@ jobs:
         
       - name: Move build artifacts
         run: mv dist/* preview/dist/
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'preview/dist'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
