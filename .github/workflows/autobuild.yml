@@ -34,7 +34,6 @@ jobs:
           
       - name: Auto-merge Pull Request
         run: |
-          sleep 180
-          gh pr merge --auto --merge "auto-preview-update"
+          gh pr merge --auto --merge auto-preview-update
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        run: mv dist/* preview/dist/
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
