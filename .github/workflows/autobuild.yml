@@ -20,11 +20,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         
+      - name: Clean previous build
+        run: |
+          rm -rf preview/dist/*
+          rm -rf dist/*
+          
       - name: Build project
         run: node ./scripts/build.js
         
       - name: Setup Pages
         uses: actions/configure-pages@v3
+        # TODO: 配置自定义域名
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
