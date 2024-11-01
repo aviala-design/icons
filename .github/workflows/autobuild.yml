@@ -1,0 +1,23 @@
+name: Auto Build and Move Artifacts
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  build-and-move:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Build project
+        run: node ./scripts/build.js
+        
+      - name: Create preview directory
+        run: mkdir -p preview/dist
+        
+      - name: Move build artifacts
+        run: mv dist/* preview/dist/
