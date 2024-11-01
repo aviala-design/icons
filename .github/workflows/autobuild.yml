@@ -21,3 +21,20 @@ jobs:
         
       - name: Move build artifacts
         run: mv dist/* preview/dist/
+        
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update preview build"
+          title: "Update Preview Build"
+          body: "自动更新预览构建文件"
+          branch: "auto-preview-update"
+          delete-branch: true
+          
+      - name: Auto-merge Pull Request
+        run: |
+          sleep 180
+          gh pr merge --auto --merge "auto-preview-update"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        run: mv dist/* preview/dist/
