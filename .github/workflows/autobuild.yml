@@ -1,17 +1,20 @@
-name: Auto Build and Move Artifacts
+name: Auto Build and Deploy
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  build-and-move:
+  build-and-deploy:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
-      contents: write
       pages: write
       id-token: write
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
       - name: Checkout code
@@ -20,36 +23,15 @@ jobs:
       - name: Build project
         run: node ./scripts/build.js
         
-      - name: Create preview directory
-        run: mkdir -p preview/dist
-        
-      - name: Move build artifacts
-        run: mv dist/* preview/dist/
-        
       - name: Setup Pages
         uses: actions/configure-pages@v3
+        # TODO: 配置自定义域名
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: 'preview/dist'
+          path: 'preview'
           
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-        
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: update preview build"
-          title: "Update Preview Build"
-          body: "自动更新预览构建文件"
-          branch: "auto-preview-update"
-          delete-branch: true
-          
-      - name: Auto-merge Pull Request
-        run: |
-          gh pr merge --auto --merge auto-preview-update
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
