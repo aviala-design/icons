@@ -19,6 +19,12 @@ npm install @aviala-design/icons
 yarn add @aviala-design/icons
 ```
 
+## Import
+All:
+```javascript
+import { allIcons, getIcon } from './icons/all.js';
+```
+
 ## Uesd
 
 ```html
@@ -37,9 +43,4 @@ Output the icon name and supported attributes on the console to facilitate viewi
 
 ```bash
 listAvialaIcons();
-```
-The output content should be like this:
-```bash
-> user
-Available modes: black, colorful, fill, outline
 ```

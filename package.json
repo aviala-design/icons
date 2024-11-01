@@ -2,10 +2,9 @@
     "name": "@aviala-design/icons",
     "version": "1.1.0",
     "description": "A customizable icon library",
-    "main": "dist/index.js",
+    "main": "dist/all.js",
     "files": [
-      "dist",
-      "src/icons"
+      "dist"
     ],
     "scripts": {
       "build": "node scripts/build.js",

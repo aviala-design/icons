@@ -26,6 +26,8 @@
             flex-direction: column;
             align-items: flex-start;
             margin-top: -12px;
+            /* width: calc(1065px - 28px); */
+            width: calc(956px - 28px);
         }
 
         .icon-card {
@@ -36,40 +38,44 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            width: calc(928px - 28px);
+            /* width: calc(1065px - 56px); */
+            width: calc(956px - 56px);
         }
-          .icon-display {
-              flex-direction: row;
-              justify-content: flex-start;
-              display: flex;
-              width: 100%;
-          }
 
-          .icon-display div {
-              max-width: calc(108px - 12px);
-              min-width: calc(108px - 12px);
-              padding: 0 6px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 38px;
-              border-left: 1px solid #eee;
-              text-align: center;
-          }
+        .icon-display {
+            flex-direction: row;
+            justify-content: flex-start;
+            display: flex;
+            width: 100%;
+        }
 
-          .icon-display .colorful-variant {
-              position: relative;
-          }
+        .icon-display div {
+            max-width: calc(108px - 12px);
+            min-width: calc(108px - 12px);
+            padding: 0 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 38px;
+            border-left: 1px solid #eee;
+            text-align: center;
+            gap: 10px;
+        }
 
-          .icon-display .colorful-variant::after {
-              content: attr(data-variant);
-              position: absolute;
-              bottom: 2px;
-              right: 2px;
-              font-size: 10px;
-              color: #999;
-              font-family: 'default';
-          }
+        .icon-display .colorful-variant {
+            position: relative;
+        }
+
+        .icon-display .colorful-variant::after {
+            content: attr(data-variant);
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 10px;
+            color: #999;
+            font-family: 'default';
+        }
+
         .icon-name {
             font-size: 14px;
             color: #333;
@@ -89,7 +95,8 @@
         }
 
         .icon-title {
-            width: calc(928px - 56px);
+            /* width: calc(1065px - 56px); */
+            width: calc(956px - 56px);
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -97,6 +104,7 @@
             background: #ffffff;
             position: sticky;
             top: -1px;
+            z-index: 10;
         }
 
         .icon-title .icon-name {
@@ -113,41 +121,156 @@
 
         h4 {
             font-family: 'default';
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: normal;
             opacity: 0.7;
+            margin: 0;
+            text-align: center;
         }
 
         h2 {
             font-family: 'default-ltalic';
+            text-align: center;
             font-size: 26px;
         }
 
         p {
             font-family: 'default';
             font-size: 14px;
+            text-align: center;
             opacity: 0.4;
+        }
+
+        @media screen and (max-width: 960px) {
+            body {
+            align-items: start !important;
+            justify-content: flex-start !important;
+            }
         }
 
         body {
             margin: 0;
             padding-top: 0px;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .category-section {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .category-header {
+            background: #fff;
+            padding: 8px 10px 8px 14px;
+            cursor: pointer;
+            border-radius: 6px;
+            /* border-radius: 32px; */
+            list-style: none;
+            transition: all 0.3s ease;
+            /* width: fit-content; */
+            position: sticky;
+            top: 72px;
+            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0);
+            border: 1px solid rgba(203, 203, 203, 0);
+        }
+
+        .category-header:hover {
+            background: #f5f5f5;
+        }
+
+        .category-header::-webkit-details-marker {
+            display: none;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .title-with-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .arrow-icon {
+            font-size: 16px;
+            color: #666;
+            transition: all 0.25s ease;
+        }
+
+        .icon-count {
+            font-family: 'default';
+            font-size: 13px;
+            color: #666;
+            padding: 2px 6px;
+            /* border: solid 1px #999; */
+            border-radius: 20px;
+            min-width: 16px;
+            text-align: right;
+            /* text-align: center; */
+            transition: all 0.15s ease 0.05s;
+        }
+
+        /* 移除之前的箭头样式 */
+        .category-header::after {
+            display: none;
+        }
+
+        .category-header h3 {
+            margin: 0;
+            font-family: 'default';
+            font-size: 16px;
+            color: #333;
+            transition: all 0.15s ease 0.05s;
+        }
+
+        .category-icons {
+            padding: 8px 0;
+        }
+
+        .total-count {
+            padding: 16px 20px;
+            font-family: 'default';
+            font-size: 14px;
+            color: #666;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 16px;
+        }
+
+        /* 为分类标题添加图标数量样式 */
+        .category-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
     <div class="page-title">
-        <h4>Aviala Design Icons</h4>
+        <div
+            style="display: flex; align-items: center; gap: 12px; padding: 8px 0px; justify-content: center; flex-direction: column;">
+            <aviala-icon name="Brand_avialaDesign" mode="outline" style="font-size: 18px;"></aviala-icon>
+            <h4>Aviala Design Icons</h4>
+        </div>
         <h2>A customizable icon library with support for multiple styles.</h2>
         <p>version 1.0.5</p>
     </div>
     <div class="icon-title">
-        <div class="icon-name">Icon Name / Mode</div>
+        <div class="icon-name" id="icon-list-title">Icon Name / Mode</div>
         <div class="icon-display">
             <div class="mode-label">outline</div>
             <div class="mode-label">fill</div>
             <div class="mode-label">colorful</div>
-            <div class="mode-label">colorful variants</div>
+            <!-- <div class="mode-label">colorful variants</div> -->
             <div class="mode-label">black</div>
             <div class="mode-label">fill-black</div>
             <div class="mode-label">fill-colorful</div>
@@ -155,66 +278,161 @@
     </div>
     <div class="icon-grid" id="iconGrid"></div>
 
-    <script src="../dist/index.js"></script>
-    <script>
+    <script type="module" src="../dist/all.js"></script>
+    <script type="module">
+        import { allIcons, getIcon } from '../dist/all.js';
+
         function initializeDemo() {
-            const iconInfo = listAvialaIcons(false);
+            // Replace listAvialaIcons(false) with direct usage of allIcons
+            const iconInfo = {
+                icons: Object.entries(allIcons).map(([name, data]) => ({
+                    name,
+                    modes: Object.keys(data)
+                }))
+            };
+
             const grid = document.getElementById('iconGrid');
 
+            const categorizedIcons = {};
+            let totalIcons = 0;
             iconInfo.icons.forEach(icon => {
-                const card = document.createElement('div');
-                card.className = 'icon-card';
-
-                const nameDiv = document.createElement('div');
-                nameDiv.className = 'icon-name';
-                nameDiv.textContent = `${icon.name} (${icon.modes.join(', ')})`;
-
-                const displayDiv = document.createElement('div');
-                displayDiv.className = 'icon-display';
-
-                // 基础模式展示
-                ['outline', 'fill', 'colorful'].forEach(mode => {
-                    const modeContainer = document.createElement('div');
-                    if (icon.modes.includes(mode)) {
-                        const iconElement = document.createElement('aviala-icon');
-                        iconElement.setAttribute('name', icon.name);
-                        iconElement.setAttribute('mode', mode);
-                        modeContainer.appendChild(iconElement);
-                    }
-                    displayDiv.appendChild(modeContainer);
-                });
-
-                // Colorful 变体展示
-                const variantsContainer = document.createElement('div');
-                const colorfulVariants = icon.modes.filter(mode => mode.startsWith('colorful-'));
-                if (colorfulVariants.length > 0) {
-                    colorfulVariants.forEach(variant => {
-                        const variantElement = document.createElement('aviala-icon');
-                        variantElement.setAttribute('name', icon.name);
-                        variantElement.setAttribute('mode', variant);
-                        variantsContainer.appendChild(variantElement);
-                    });
+                const [category, iconName] = icon.name.split('_');
+                if (!categorizedIcons[category]) {
+                    categorizedIcons[category] = [];
                 }
-                displayDiv.appendChild(variantsContainer);
+                categorizedIcons[category].push({ ...icon, displayName: iconName });
+                totalIcons++;
+            });
 
-                // 其他模式展示
-                ['black', 'fill-black', 'fill-colorful'].forEach(mode => {
-                    const modeContainer = document.createElement('div');
-                    if (icon.modes.includes(mode)) {
-                        const iconElement = document.createElement('aviala-icon');
-                        iconElement.setAttribute('name', icon.name);
-                        iconElement.setAttribute('mode', mode);
-                        modeContainer.appendChild(iconElement);
+            const totalCount = document.querySelector('#icon-list-title');
+            totalCount.textContent = `total of ${totalIcons}`;
+
+            Object.entries(categorizedIcons).forEach(([category, icons]) => {
+                const details = document.createElement('details');
+                details.className = 'category-section';
+                details.open = false;
+
+                const summary = document.createElement('summary');
+                summary.className = 'category-header';
+
+                // 创建新的标题布局
+                summary.innerHTML = `
+                    <div class="header-content">
+                        <div class="title-with-icon">
+                            <aviala-icon name="Direction_arrowDownLight" class="arrow-icon"></aviala-icon>
+                            <h3>${category}</h3>
+                        </div>
+                        <div class="icon-count">${icons.length}</div>
+                    </div>
+                `;
+
+                // 监听折叠状态变化
+                details.addEventListener('toggle', () => {
+                    const arrowIcon = summary.querySelector('.arrow-icon');
+                    const h3Content = summary.querySelector('h3');
+                    const iconCount = summary.querySelector('.icon-count');
+                    if (details.open) {
+                        arrowIcon.style.transform = 'rotate(180deg)';
+                        arrowIcon.setAttribute('color', '#FA9E14');  // 使用color属性设置颜色
+                        // iconCount.style.color = '#FFD699 !important';  // 设置iconCount的样式
+                        // h3Content.style.color = '#FA9E14 !important';  // 设置headerContent的样式
+                        h3Content.setAttribute('style', 'color: #FA9E14 !important');
+                        iconCount.setAttribute('style', 'color: #FFD699 !important');
+                    } else {
+                        arrowIcon.style.transform = 'rotate(0deg)';
+                        arrowIcon.removeAttribute('color');  // 移除color属性恢复默认颜色
+                        h3Content.removeAttribute('style');  // 移除color属性恢复默认颜色
+                        iconCount.removeAttribute('style');  // 移除color属性恢复默认颜色
+                        // h3Content.style.color = '#333';  // 设置headerContent的样式
+                        // iconCount.style.color = '#666';  // 设置iconCount的样式
                     }
-                    displayDiv.appendChild(modeContainer);
                 });
 
-                card.appendChild(nameDiv);
-                card.appendChild(displayDiv);
-                grid.appendChild(card);
+                const iconContainer = document.createElement('div');
+                iconContainer.className = 'category-icons';
+
+                icons.forEach(icon => {
+                    const card = createIconCard(icon);
+                    iconContainer.appendChild(card);
+                });
+
+                details.appendChild(summary);
+                details.appendChild(iconContainer);
+                grid.appendChild(details);
+            });
+
+            window.addEventListener('scroll', () => {
+                document.querySelectorAll('.category-header').forEach(header => {
+                    const details = header.closest('details');
+                    const rect = header.getBoundingClientRect();
+
+                    if (details.open && rect.top <= 72) {
+                        header.style.boxShadow = '0px 1px 2px rgba(0, 0, 0, 0.02), 0px 2px 6px rgba(0, 0, 0, 0.05), 0px 5px 14px rgba(0, 0, 0, 0.06)';
+                        header.style.border = '1px solid rgba(203, 203, 203, 0.5)';
+                    } else {
+                        header.style.boxShadow = '0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0)';
+                        header.style.border = '1px solid rgba(203, 203, 203, 0)';
+                    }
+                });
             });
         }
-        document.addEventListener('DOMContentLoaded', initializeDemo);
+
+        function createIconCard(icon) {
+            const card = document.createElement('div');
+            card.className = 'icon-card';
+
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'icon-name';
+            nameDiv.textContent = `${icon.displayName}`;
+
+            const displayDiv = document.createElement('div');
+            displayDiv.className = 'icon-display';
+
+            ['outline', 'fill'].forEach(mode => {
+                const modeContainer = document.createElement('div');
+                if (icon.modes.includes(mode)) {
+                    const iconElement = document.createElement('aviala-icon');
+                    iconElement.setAttribute('name', icon.name);
+                    iconElement.setAttribute('mode', mode);
+                    modeContainer.appendChild(iconElement);
+                }
+                displayDiv.appendChild(modeContainer);
+            });
+
+            // 处理 colorful 及其变体
+            const colorfulContainer = document.createElement('div');
+            if (icon.modes.includes('colorful')) {
+                const iconElement = document.createElement('aviala-icon');
+                iconElement.setAttribute('name', icon.name);
+                iconElement.setAttribute('mode', 'colorful');
+                colorfulContainer.appendChild(iconElement);
+            }
+            // 添加 colorful 变体到同一个容器
+            const colorfulVariants = icon.modes.filter(mode => mode.startsWith('colorful-'));
+            colorfulVariants.forEach(variant => {
+                const variantElement = document.createElement('aviala-icon');
+                variantElement.setAttribute('name', icon.name);
+                variantElement.setAttribute('mode', variant);
+                colorfulContainer.appendChild(variantElement);
+            });
+            displayDiv.appendChild(colorfulContainer);
+
+            // 继续展示其他模式
+            ['black', 'fill-black', 'fill-colorful'].forEach(mode => {
+                const modeContainer = document.createElement('div');
+                if (icon.modes.includes(mode)) {
+                    const iconElement = document.createElement('aviala-icon');
+                    iconElement.setAttribute('name', icon.name);
+                    iconElement.setAttribute('mode', mode);
+                    modeContainer.appendChild(iconElement);
+                }
+                displayDiv.appendChild(modeContainer);
+            });
+
+            card.appendChild(nameDiv);
+            card.appendChild(displayDiv);
+            return card;
+        } document.addEventListener('DOMContentLoaded', initializeDemo);
 
         const titleBox = document.querySelector(".page-title");
         const body = document.querySelector("body");
