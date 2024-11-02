@@ -502,28 +502,37 @@
                         style="font-size: 16px; font-family: 'default-semibold-ltalic'; color: rgb(23, 100, 255)">Note</span>
                 </div>
                 The icon size
-                needs to be adjusted through the font-size property in cascading style
-                sheets. The default is 24px.
+                needs to be adjusted through the font-size property in CSS. Default Size is 24px.
             </h4>
             <div class="parameter-table">
                 <code>name</code>
                 <h4>Required</h4>
-                <h4>It needs to be filled in with the name set when importing icons in JavaScript.</h4>
+                <h4 style="opacity: 1;">It needs to be filled in with the name set when importing icons in JavaScript.</h4>
             </div>
             <div class="parameter-table">
                 <code>mode</code>
                 <h4>Optional</h4>
-                <h4>Used to configure the icon style. The default is "outline". When the requested
+                <h4 style="opacity: 1;">Used to configure the icon style. The default is "outline". When the requested
                     style
                     does not exist, no icon will be displayed. The available styles of specific icons can be queried
                     in
-                    the following table.</h4>
+                    the
+                    <span
+                        style="/* text-decoration: underline 1.5px; text-underline-offset: 2px; */ font-family: 'default-semibold-ltalic'; color: #1764ff;">
+                        <aviala-icon name="Edit_component" mode="outline" color="#1764ff"
+                            style="font-size: 18px; margin-bottom: -3px; margin-right: -2px;"></aviala-icon>
+                        Icon List
+                    </span>
+                    <span style="font-family: 'default-ltalic'; opacity: 0.6;">
+                        (Click the button in the lower right corner to make it display.)
+                    </span>
+                </h4>
 
             </div>
             <div class="parameter-table">
                 <code>color</code>
                 <h4>Optional</h4>
-                <h4>Used to configure the icon color. It is only effective when the mode is
+                <h4 style="opacity: 1;">Used to configure the icon color. It is only effective when the mode is
                     "outline",
                     "fill", or "black". More modes may be supported in the future.</h4>
             </div>
