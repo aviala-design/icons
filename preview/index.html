@@ -385,18 +385,22 @@
         }
 
         iframe#icon-list-iframe {
-            width: 100%;
-            max-width: 975px;
-            height: calc(100% - 28px);
-            border: unset;
-            z-index: 5;
-            background: white;
-            border-radius: 8px 8px 0 0;
-            position: relative;
-            transition: top 0.4s cubic-bezier(0.40, 0, 0.4, 0.8) 0.4s, opacity 0.4s ease-in 0.4s;
-            top: 100vh;
-            opacity: 0;
-        }
+    width: 100%;
+    max-width: 975px;
+    height: calc(100% - 28px);
+    border: unset;
+    z-index: 5;
+    background: white;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    transform-origin: bottom center;
+    transform: translateY(100%) scale(0.9);
+    transition: 
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.4s ease-out;
+    opacity: 0;
+}
+
 
         #frame {
             height: 100vh;
@@ -425,6 +429,31 @@
             opacity: 0;
             backdrop-filter: blur(20px);
         }
+
+        button[onclick="showIconList()"] {
+            transition: all 0.2s ease;
+            right: 20vw;
+            padding: 24px;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 2px 6px, rgba(0, 0, 0, 0.06) 0px 5px 14px;
+            background: #1764ff;
+            border: solid 1px #1c5bda;
+            color: #ffffff;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            border-radius: 50%;
+        }
+
+        @media screen and (max-width: 1700px) {
+            button[onclick="showIconList()"] {
+                right: 20px;
+            }
+        }
+
+        button[onclick="showIconList()"]:active {
+            transform: scale(0.92);
+            filter: brightness(0.85);
+        }
     </style>
 </head>
 
@@ -452,8 +481,7 @@
                 onclick="window.open('https://js.design/community?category=teamHome&id=633a635990e635c1991ee5fb')">JS.DESIGN<aviala-icon
                     name="Direction_arrowRightLight" color="#1764ff"></aviala-icon></button>
         </div>
-        <button onclick="showIconList()"
-            style=" box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 2px 6px, rgba(0, 0, 0, 0.06) 0px 5px 14px; background: #1764ff; border: solid 1px #1c5bda; color: #ffffff; padding: 14px; position: fixed; right: 20px; bottom: 20px; border-radius: 50%;">
+        <button onclick="showIconList()">
             <aviala-icon name="Edit_component" mode="outline" color="#ffffff" style="font-size: 20px;"></aviala-icon>
         </button>
         <!-- <details id="documents" class="category-section" style="margin-left: -14px; width: calc(100% + 28px);">
@@ -507,7 +535,8 @@
             <div class="parameter-table">
                 <code>name</code>
                 <h4>Required</h4>
-                <h4 style="opacity: 1;">It needs to be filled in with the name set when importing icons in JavaScript.</h4>
+                <h4 style="opacity: 1;">It needs to be filled in with the name set when importing icons in JavaScript.
+                </h4>
             </div>
             <div class="parameter-table">
                 <code>mode</code>
@@ -556,24 +585,47 @@
         const frame = document.getElementById('frame');
         const frameBackdrop = document.getElementById('frame-backdrop');
         const iconListFrame = document.getElementById('icon-list-iframe');
+
+        // 添加动画锁
+        let isAnimating = false;
+
         function showIconList() {
-            frame.style.top = '0';
-            frame.style.opacity = '1';
-            frameBackdrop.style.opacity = '1';
-            iconListFrame.style.top = '28px';
-            iconListFrame.style.opacity = '1';
-            body.style.overflow = 'hidden';
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            frame.style.display = 'flex';
+            requestAnimationFrame(() => {
+                frame.style.top = '0';
+                frame.style.opacity = '1';
+                frameBackdrop.style.opacity = '1';
+                iconListFrame.style.transform = 'translateY(0) scale(1)';
+                iconListFrame.style.opacity = '1';
+                body.style.overflow = 'hidden';
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 800);
+            });
         }
 
         function closeIconList() {
-            frame.style.top = '100vh';
+            if (isAnimating) return;
+            isAnimating = true;
+            
             frame.style.opacity = '0';
             frameBackdrop.style.opacity = '0';
-            iconListFrame.style.top = '100vh';
+            iconListFrame.style.transform = 'translateY(100%) scale(0.9)';
             iconListFrame.style.opacity = '0';
             body.style.overflow = 'visible';
+            
+            setTimeout(() => {
+                frame.style.display = 'none';
+                frame.style.top = '100vh';
+                isAnimating = false;
+            }, 800);
         }
+
+        frameBackdrop.addEventListener('click', closeIconList);
     </script>
 </body>
-
 </html>
