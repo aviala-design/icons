@@ -4,14 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Aviala Design Icons</title>
-    <style>
-        a {
-            color: inherit;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+    <style>
         @font-face {
             font-family: 'default-ltalic';
             src: url(./src/JetBrainsMono-Italic.ttf);
@@ -35,6 +30,7 @@
             margin-top: -12px;
             /* width: calc(1065px - 28px); */
             width: calc(956px - 28px);
+            position: relative;
         }
 
         .icon-card {
@@ -154,46 +150,65 @@
         }
 
         @media screen and (max-width: 960px) {
-            /* body {
-                align-items: start !important;
-                justify-content: flex-start !important;
-            } */
-
             #getStarted {
                 min-width: calc(100vw - 96px);
             }
 
-            /* .page-title {
-                max-width: calc(956px - 72px);
-                width: auto !important;
-            } */
+            .category-header {
+                width: calc(100vw - 68px);
+                left: 14px;
+            }
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
         }
 
         body {
             margin: 0;
-            padding-top: 0px;
-            user-select: none;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
+        .page-title {
+            flex-shrink: 0;
+            width: calc(956px - (28px * 2));
+            max-width: calc(100vw - (28px * 2) - 16px);
+        }
+
+        .x-scroll {
+            max-width: calc(100vw - 16px);
+            overflow-x: auto;
+        }
+
+        .icon-title {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 10;
+        }
+
         .category-section {
             width: 100%;
             margin-bottom: 8px;
+            position: relative;
         }
 
         .category-header {
+            position: sticky;
+            top: 72px;
             background: #fff;
+            z-index: 9;
+            margin: 0 -1px;
             padding: 8px 10px 8px 14px;
             cursor: pointer;
             border-radius: 6px;
-            /* border-radius: 32px; */
             list-style: none;
             transition: all 0.3s ease;
-            /* width: fit-content; */
-            position: sticky;
-            top: 72px;
             box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0);
             border: 1px solid rgba(203, 203, 203, 0);
         }
@@ -327,8 +342,7 @@
             font-size: 14px;
             color: #333;
             line-height: 1.5;
-            margin-bottom: 16px;
-            padding: 8px 10px 8px 14px;
+            margin-bottom: 32px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -353,6 +367,7 @@
         .x-scroll {
             max-width: calc(100vw - 16px);
             overflow-x: auto;
+            position: relative;
         }
 
         .parameter-table {
@@ -367,6 +382,48 @@
                 padding: 6px 10px !important;
                 text-align: center;
             }
+        }
+
+        iframe#icon-list-iframe {
+            width: 100%;
+            max-width: 975px;
+            height: calc(100% - 28px);
+            border: unset;
+            z-index: 5;
+            background: white;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: top 0.4s cubic-bezier(0.40, 0, 0.4, 0.8) 0.4s, opacity 0.4s ease-in 0.4s;
+            top: 100vh;
+            opacity: 0;
+        }
+
+        #frame {
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            bottom: 0;
+            opacity: 0;
+            top: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+            transition: opacity 0.3s ease-in;
+        }
+
+        #frame-backdrop {
+            width: 100vw;
+            height: 100vh;
+            border: unset;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.4);
+            /* display: none; */
+            top: 0;
+            z-index: 0;
+            transition: top 0.3s ease-in, opacity 0.3s ease-in;
+            opacity: 0;
+            backdrop-filter: blur(20px);
         }
     </style>
 </head>
@@ -387,15 +444,19 @@
         <div
             style="display: flex; align-items: center; gap: 12px; padding: 16px 0px; margin: 20px 0px; border-top: dashed 1px #eee; border-bottom: dashed 1px #eee; justify-content: center; flex-direction: row; flex-wrap: wrap;">
             <p id="getStarted" style="opacity: 0.8; font-size: 14px; font-family: 'default-ltalic';">Get started at</p>
-            <button><a href="https://github.com/aviala-design/icons">GitHub<aviala-icon name="Direction_arrowRightLight"
-                        color="#1764ff"></aviala-icon></a></button>
-            <button><a href="https://www.npmjs.com/package/@aviala-design/icons">NPM<aviala-icon
-                        name="Direction_arrowRightLight" color="#1764ff"></aviala-icon></a></button>
-            <button><a
-                    href="https://js.design/community?category=teamHome&id=633a635990e635c1991ee5fb">JS.DESIGN<aviala-icon
-                        name="Direction_arrowRightLight" color="#1764ff"></aviala-icon></a></button>
+            <button onclick="window.open('https://github.com/aviala-design/icons')">GitHub<aviala-icon
+                    name="Direction_arrowRightLight" color="#1764ff"></aviala-icon></button>
+            <button onclick="window.open('https://www.npmjs.com/package/@aviala-design/icons')">NPM<aviala-icon
+                    name="Direction_arrowRightLight" color="#1764ff"></aviala-icon></button>
+            <button
+                onclick="window.open('https://js.design/community?category=teamHome&id=633a635990e635c1991ee5fb')">JS.DESIGN<aviala-icon
+                    name="Direction_arrowRightLight" color="#1764ff"></aviala-icon></button>
         </div>
-        <details id="documents" class="category-section" style="margin-left: -14px; width: calc(100% + 28px);">
+        <button onclick="showIconList()"
+            style=" box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 2px 6px, rgba(0, 0, 0, 0.06) 0px 5px 14px; background: #1764ff; border: solid 1px #1c5bda; color: #ffffff; padding: 14px; position: fixed; right: 20px; bottom: 20px; border-radius: 50%;">
+            <aviala-icon name="Edit_component" mode="outline" color="#ffffff" style="font-size: 20px;"></aviala-icon>
+        </button>
+        <!-- <details id="documents" class="category-section" style="margin-left: -14px; width: calc(100% + 28px);">
             <summary class="category-header" id="documents-header">
                 <div class="header-content">
                     <div class="title-with-icon">
@@ -403,317 +464,115 @@
                         <h3>Document</h3>
                     </div>
                 </div>
-            </summary>
-            <div class="documentContent" id="document_installation">
-                <h2 style="font-size: 20px;">Installation</h2>
-                <h4>Install it with any npm package manager you like.</h4>
-                <code>@aviala-design/icons</code>
-            </div>
-            <div class="documentContent" id="document_import">
-                <h2 style="font-size: 20px;">Import</h2>
+            </summary> -->
+        <div class="documentContent" id="document_installation">
+            <h2 style="font-size: 20px;">Installation</h2>
+            <h4>Install it with any npm package manager you like.</h4>
+            <code>@aviala-design/icons</code>
+        </div>
+        <div class="documentContent" id="document_import">
+            <h2 style="font-size: 20px;">Import</h2>
 
-                <h4>Import All Icons</h4>
-                <code>import { allIcons, getIcon } from 'all.js';</code>
+            <h4>Import All Icons</h4>
+            <code>import { allIcons, getIcon } from 'all.js';</code>
 
-                <h4>Import a certain Icon</h4>
-                <code>import { Generic_home } from 'Generic_home.js';</code>
-            </div>
-            <div class="documentContent" id="document_uesd">
-                <h2 style="font-size: 20px;">Uesd</h2>
+            <h4>Import a certain Icon</h4>
+            <code>import { Generic_home } from 'Generic_home.js';</code>
+        </div>
+        <div class="documentContent" id="document_uesd">
+            <h2 style="font-size: 20px;">Uesd</h2>
 
-                <h4>html</h4>
-                <code>&lt;aviala-icon name="user" mode="fill" color="#ff0000" class="medium-icon"&gt;&lt;/aviala-icon&gt;</code>
+            <h4>html</h4>
+            <code>&lt;aviala-icon name="user" mode="fill" color="#ff0000" class="medium-icon"&gt;&lt;/aviala-icon&gt;</code>
 
-                <h4>JavaScript</h4>
-                <code>const icon = document.createElement('aviala-icon');<br>
+            <h4>JavaScript</h4>
+            <code>const icon = document.createElement('aviala-icon');<br>
                     icon.setAttribute('name', 'user');<br>
                     icon.setAttribute('mode', 'colorful');<br>
                     icon.classList.add('medium-icon');<br>
                     document.body.appendChild(icon);</code>
+        </div>
+        <div class="documentContent" id="document_parameter">
+            <h2 style="font-size: 20px;">Parameter</h2>
+            <h4
+                style="border-left: solid 3px rgb(107, 166, 255); flex-direction: column; gap: 4px; display: flex; padding: 8px 12px; margin-bottom: 14px; font-family: 'default-ltalic'; font-size: 13px; opacity: 1;">
+                <div style="font-size: 16px; display: flex; gap: 8px; align-items: center; flex-direction: row;">
+                    <aviala-icon name="Symbol_informationCircle" mode="colorful" style="font-size: 18px;"></aviala-icon>
+                    <span
+                        style="font-size: 16px; font-family: 'default-semibold-ltalic'; color: rgb(23, 100, 255)">Note</span>
+                </div>
+                The icon size
+                needs to be adjusted through the font-size property in CSS. Default Size is 24px.
+            </h4>
+            <div class="parameter-table">
+                <code>name</code>
+                <h4>Required</h4>
+                <h4 style="opacity: 1;">It needs to be filled in with the name set when importing icons in JavaScript.</h4>
             </div>
-            <div class="documentContent" id="document_parameter">
-                <h2 style="font-size: 20px;">Parameter</h2>
-                <h4
-                    style="border-left: solid 3px rgb(107, 166, 255); flex-direction: column; gap: 4px; display: flex; padding: 8px 12px; margin-bottom: 14px; font-family: 'default-ltalic'; font-size: 13px; opacity: 1;">
-                    <div style="font-size: 16px; display: flex; gap: 8px; align-items: center; flex-direction: row;">
-                        <aviala-icon name="Symbol_informationCircle" mode="colorful"
-                            style="font-size: 18px;"></aviala-icon>
-                        <span
-                            style="font-size: 16px; font-family: 'default-semibold-ltalic'; color: rgb(23, 100, 255)">Note</span>
-                    </div>
-                    The icon size
-                    needs to be adjusted through the font-size property in cascading style
-                    sheets. The default is 24px.
+            <div class="parameter-table">
+                <code>mode</code>
+                <h4>Optional</h4>
+                <h4 style="opacity: 1;">Used to configure the icon style. The default is "outline". When the requested
+                    style
+                    does not exist, no icon will be displayed. The available styles of specific icons can be queried
+                    in
+                    the
+                    <span
+                        style="/* text-decoration: underline 1.5px; text-underline-offset: 2px; */ font-family: 'default-semibold-ltalic'; color: #1764ff;">
+                        <aviala-icon name="Edit_component" mode="outline" color="#1764ff"
+                            style="font-size: 18px; margin-bottom: -3px; margin-right: -2px;"></aviala-icon>
+                        Icon List
+                    </span>
+                    <span style="font-family: 'default-ltalic'; opacity: 0.6;">
+                        (Click the button in the lower right corner to make it display.)
+                    </span>
                 </h4>
-                <div class="parameter-table">
-                    <code>name</code>
-                    <h4>Required</h4>
-                    <h4>It needs to be filled in with the name set when importing icons in JavaScript.</h4>
-                </div>
-                <div class="parameter-table">
-                    <code>mode</code>
-                    <h4>Optional</h4>
-                    <h4>Used to configure the icon style. The default is "outline". When the requested
-                        style
-                        does not exist, no icon will be displayed. The available styles of specific icons can be queried
-                        in
-                        the following table.</h4>
 
-                </div>
-                <div class="parameter-table">
-                    <code>color</code>
-                    <h4>Optional</h4>
-                    <h4>Used to configure the icon color. It is only effective when the mode is
-                        "outline",
-                        "fill", or "black". More modes may be supported in the future.</h4>
-                </div>
             </div>
-        </details>
-    </div>
-    <div class="x-scroll">
-        <div class="icon-title">
-            <div class="icon-name" id="icon-list-title">Icon Name / Mode</div>
-            <div class="icon-display">
-                <div class="mode-label">outline</div>
-                <div class="mode-label">fill</div>
-                <div class="mode-label">colorful</div>
-                <!-- <div class="mode-label">colorful variants</div> -->
-                <div class="mode-label">black</div>
-                <div class="mode-label">fill-black</div>
-                <div class="mode-label">fill-colorful</div>
+            <div class="parameter-table">
+                <code>color</code>
+                <h4>Optional</h4>
+                <h4 style="opacity: 1;">Used to configure the icon color. It is only effective when the mode is
+                    "outline",
+                    "fill", or "black". More modes may be supported in the future.</h4>
             </div>
         </div>
-        <div class="icon-grid" id="iconGrid"></div>
+        <!-- </details> -->
+    </div>
+    <div id="frame">
+        <iframe src="./icons/index.html" id="icon-list-iframe"></iframe>
+        <div id="frame-backdrop"></div>
+        <button onclick="closeIconList()"
+            style="z-index: 8; background: transparent; color: #ffffff; padding: 2px; position: absolute; right: 18px; top: 18px; border-radius: 50%;">
+            <aviala-icon name="Symbol_close" mode="outline" color="#ffffff" style="font-size: 18px;"></aviala-icon>
+        </button>
     </div>
     <script type="module" src="./dist/all.js"></script>
     <script type="module">
         import { allIcons, getIcon } from './dist/all.js';
-
-        function initializeDemo() {
-            // Replace listAvialaIcons(false) with direct usage of allIcons
-            const iconInfo = {
-                icons: Object.entries(allIcons).map(([name, data]) => ({
-                    name,
-                    modes: Object.keys(data)
-                }))
-            };
-
-            const grid = document.getElementById('iconGrid');
-
-            const categorizedIcons = {};
-            let totalIcons = 0;
-            iconInfo.icons.forEach(icon => {
-                const [category, iconName] = icon.name.split('_');
-                if (!categorizedIcons[category]) {
-                    categorizedIcons[category] = [];
-                }
-                categorizedIcons[category].push({ ...icon, displayName: iconName });
-                totalIcons++;
-            });
-
-            const totalCount = document.querySelector('#icon-list-title');
-            totalCount.textContent = `total of ${totalIcons}`;
-
-            Object.entries(categorizedIcons).forEach(([category, icons]) => {
-                const details = document.createElement('details');
-                details.className = 'category-section';
-                details.open = false;
-
-                const summary = document.createElement('summary');
-                summary.className = 'category-header';
-
-                // 创建新的标题布局
-                summary.innerHTML = `
-                    <div class="header-content">
-                        <div class="title-with-icon">
-                            <aviala-icon name="Direction_arrowDownLight" class="arrow-icon"></aviala-icon>
-                            <h3>${category}</h3>
-                        </div>
-                        <div class="icon-count">${icons.length}</div>
-                    </div>
-                `;
-
-                // 监听折叠状态变化
-                details.addEventListener('toggle', () => {
-                    const arrowIcon = summary.querySelector('.arrow-icon');
-                    const h3Content = summary.querySelector('h3');
-                    const iconCount = summary.querySelector('.icon-count');
-                    if (details.open) {
-                        arrowIcon.style.transform = 'rotate(180deg)';
-                        arrowIcon.setAttribute('color', '#FA9E14');  // 使用color属性设置颜色
-                        // iconCount.style.color = '#FFD699 !important';  // 设置iconCount的样式
-                        // h3Content.style.color = '#FA9E14 !important';  // 设置headerContent的样式
-                        h3Content.setAttribute('style', 'color: #FA9E14 !important');
-                        iconCount.setAttribute('style', 'color: #FFD699 !important');
-                    } else {
-                        arrowIcon.style.transform = 'rotate(0deg)';
-                        arrowIcon.removeAttribute('color');  // 移除color属性恢复默认颜色
-                        h3Content.removeAttribute('style');  // 移除color属性恢复默认颜色
-                        iconCount.removeAttribute('style');  // 移除color属性恢复默认颜色
-                        // h3Content.style.color = '#333';  // 设置headerContent的样式
-                        // iconCount.style.color = '#666';  // 设置iconCount的样式
-                    }
-                });
-
-                const iconContainer = document.createElement('div');
-                iconContainer.className = 'category-icons';
-
-                icons.forEach(icon => {
-                    const card = createIconCard(icon);
-                    iconContainer.appendChild(card);
-                });
-
-                details.appendChild(summary);
-                details.appendChild(iconContainer);
-                grid.appendChild(details);
-            });
-
-            window.addEventListener('scroll', () => {
-                document.querySelectorAll('.category-header').forEach(header => {
-                    const details = header.closest('details');
-                    const rect = header.getBoundingClientRect();
-
-                    if (details.open && rect.top <= 72) {
-                        header.style.boxShadow = '0px 1px 2px rgba(0, 0, 0, 0.02), 0px 2px 6px rgba(0, 0, 0, 0.05), 0px 5px 14px rgba(0, 0, 0, 0.06)';
-                        header.style.border = '1px solid rgba(203, 203, 203, 0.5)';
-                    } else {
-                        header.style.boxShadow = '0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0)';
-                        header.style.border = '1px solid rgba(203, 203, 203, 0)';
-                    }
-                });
-            });
-        }
-
-        function createIconCard(icon) {
-            const card = document.createElement('div');
-            card.className = 'icon-card';
-
-            const nameDiv = document.createElement('div');
-            nameDiv.className = 'icon-name';
-            nameDiv.textContent = `${icon.displayName}`;
-
-            const displayDiv = document.createElement('div');
-            displayDiv.className = 'icon-display';
-
-            ['outline', 'fill'].forEach(mode => {
-                const modeContainer = document.createElement('div');
-                if (icon.modes.includes(mode)) {
-                    const iconElement = document.createElement('aviala-icon');
-                    iconElement.setAttribute('name', icon.name);
-                    iconElement.setAttribute('mode', mode);
-                    modeContainer.appendChild(iconElement);
-                }
-                displayDiv.appendChild(modeContainer);
-            });
-
-            // 处理 colorful 及其变体
-            const colorfulContainer = document.createElement('div');
-            if (icon.modes.includes('colorful')) {
-                const iconElement = document.createElement('aviala-icon');
-                iconElement.setAttribute('name', icon.name);
-                iconElement.setAttribute('mode', 'colorful');
-                colorfulContainer.appendChild(iconElement);
-            }
-            // 添加 colorful 变体到同一个容器
-            const colorfulVariants = icon.modes.filter(mode => mode.startsWith('colorful-'));
-            colorfulVariants.forEach(variant => {
-                const variantElement = document.createElement('aviala-icon');
-                variantElement.setAttribute('name', icon.name);
-                variantElement.setAttribute('mode', variant);
-                colorfulContainer.appendChild(variantElement);
-            });
-            displayDiv.appendChild(colorfulContainer);
-
-            // 继续展示其他模式
-            ['black', 'fill-black', 'fill-colorful'].forEach(mode => {
-                const modeContainer = document.createElement('div');
-                if (icon.modes.includes(mode)) {
-                    const iconElement = document.createElement('aviala-icon');
-                    iconElement.setAttribute('name', icon.name);
-                    iconElement.setAttribute('mode', mode);
-                    modeContainer.appendChild(iconElement);
-                }
-                displayDiv.appendChild(modeContainer);
-            });
-
-            card.appendChild(nameDiv);
-            card.appendChild(displayDiv);
-            return card;
-        } document.addEventListener('DOMContentLoaded', initializeDemo);
-
-        // const titleBox = document.querySelector(".page-title");
-        // const body = document.querySelector("body");
-
-        // let scrollHandler;
-
-        // const resizeObserverWidth = new ResizeObserver(entries => {
-        //     if (window.innerWidth < 960) {
-        //         scrollHandler = function (e) {
-        //             const viewportCenter = window.innerWidth / 2;
-        //             const titleBoxWidth = titleBox.offsetWidth;
-        //             const negativeValue = body.getBoundingClientRect().left;
-        //             const positiveValue = Math.abs(negativeValue);
-        //             const calculatedLeft = viewportCenter - (titleBoxWidth / 2) + positiveValue - 20;
-        //             const calculatedMinLeft = Math.max(0, `${calculatedLeft}`);
-        //             titleBox.style.left = `${calculatedMinLeft}px`;
-        //         };
-
-        //         document.addEventListener("scroll", scrollHandler);
-        //     } else {
-        //         if (scrollHandler) {
-        //             document.removeEventListener("scroll", scrollHandler);
-        //             titleBox.style.left = '';
-        //         }
-        //     }
-        // });
-
-        // resizeObserverWidth.observe(document.body);
-
-        // const resizeObserver = new ResizeObserver(entries => {
-        //     for (let entry of entries) {
-        //         const { height } = entry.contentRect;
-        //         body.style.paddingTop = `calc(${height}px + 32px)`;
-        //     }
-        // });
-
-        // resizeObserver.observe(titleBox);
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const details = document.querySelector('#documents')
-            const summary = details.querySelector('summary');
-            const arrowIcon = summary.querySelector('.arrow-icon');
-            const h3Content = summary.querySelector('h3');
-            const iconCount = summary.querySelector('.icon-count');
+        const body = document.body;
+        const frame = document.getElementById('frame');
+        const frameBackdrop = document.getElementById('frame-backdrop');
+        const iconListFrame = document.getElementById('icon-list-iframe');
+        function showIconList() {
+            frame.style.top = '0';
+            frame.style.opacity = '1';
+            frameBackdrop.style.opacity = '1';
+            iconListFrame.style.top = '28px';
+            iconListFrame.style.opacity = '1';
+            body.style.overflow = 'hidden';
+        }
 
-            details.addEventListener('toggle', () => {
-                if (details.open) {
-                    arrowIcon.style.transform = 'rotate(180deg)';
-                    arrowIcon.setAttribute('color', '#FA9E14');
-                    h3Content.setAttribute('style', 'color: #FA9E14 !important');
-                    iconCount?.setAttribute('style', 'color: #FFD699 !important');
-                } else {
-                    arrowIcon.style.transform = 'rotate(0deg)';
-                    arrowIcon.removeAttribute('color');
-                    h3Content.removeAttribute('style');
-                    iconCount?.removeAttribute('style');
-                }
-            });
-
-            window.addEventListener('scroll', () => {
-                const header = document.querySelector('#documents-header');
-                const details = header.closest('details');
-                const rect = header.getBoundingClientRect();
-
-                if (details.open && rect.top <= 24) {
-                    header.style.boxShadow = '0px 1px 2px rgba(0, 0, 0, 0.02), 0px 2px 6px rgba(0, 0, 0, 0.05), 0px 5px 14px rgba(0, 0, 0, 0.06)';
-                    header.style.border = '1px solid rgba(203, 203, 203, 0.5)';
-                } else {
-                    header.style.boxShadow = '0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(0, 0, 0, 0)';
-                    header.style.border = '1px solid rgba(203, 203, 203, 0)';
-                }
-            });
-        });
+        function closeIconList() {
+            frame.style.top = '100vh';
+            frame.style.opacity = '0';
+            frameBackdrop.style.opacity = '0';
+            iconListFrame.style.top = '100vh';
+            iconListFrame.style.opacity = '0';
+            body.style.overflow = 'visible';
+        }
     </script>
 </body>
 
