@@ -1,2 +1,6 @@
 package.json
 .npmrc
+dist/*
+preview/dist/*
+!preview/dist/.gitkeep
+!dist/.gitkeep
