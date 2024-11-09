@@ -4,4 +4,7 @@ dist/*
 preview/dist/*
 !preview/dist/.gitkeep
 !dist/.gitkeep
-.vscode
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
