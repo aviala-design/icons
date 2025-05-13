@@ -349,6 +349,47 @@
             user-select: all;
         }
 
+        /* 复制提示样式 */
+        .copy-toast {
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'default';
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(-50%) translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+        }
+
+        .copy-toast.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 点击反馈效果 */
+        aviala-icon.copied {
+            animation: pulse 0.3s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* 鼠标悬停效果 */
+        aviala-icon {
+            transition: transform 0.2s ease;
+        }
+
+        aviala-icon:hover {
+            transform: scale(1.1);
+        }
+
         .documentContent {
             font-family: 'default';
             font-size: 14px;
@@ -421,9 +462,9 @@
     </div>
     <div class="icon-grid" id="iconGrid"></div>
     <!-- </div> -->
-    <script type="module" src="../dist/all.js"></script>
+    <script type="module" src="./dist/all.js"></script>
     <script type="module">
-        import { allIcons, getIcon } from '../dist/all.js';
+        import { allIcons, getIcon } from './dist/all.js';
 
         function initializeDemo() {
             // Replace listAvialaIcons(false) with direct usage of allIcons
@@ -537,6 +578,79 @@
             });
         }
 
+        // 创建一个用于显示复制成功的提示元素
+        function createCopyToast() {
+            const toast = document.createElement('div');
+            toast.className = 'copy-toast';
+            toast.textContent = '已复制到剪贴板';
+            document.body.appendChild(toast);
+            return toast;
+        }
+
+        // 全局提示元素
+        let copyToast;
+
+        // 获取SVG内容的函数
+        async function getSvgContent(iconName, mode) {
+            try {
+                // 从allIcons对象中获取图标数据
+                const iconData = allIcons[iconName][mode];
+                if (!iconData) return null;
+                
+                // 构建SVG内容
+                let svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="${iconData.viewBox}" fill="none">`;
+                
+                // 添加所有路径
+                iconData.paths.forEach(path => {
+                    let pathAttrs = '';
+                    for (const [key, value] of Object.entries(path)) {
+                        pathAttrs += ` ${key}="${value}"`;
+                    }
+                    svgContent += `<path${pathAttrs}></path>`;
+                });
+                
+                svgContent += '</svg>';
+                return svgContent;
+            } catch (error) {
+                console.error('获取SVG内容失败:', error);
+                return null;
+            }
+        }
+
+        // 复制到剪贴板的函数
+        async function copyToClipboard(text, element) {
+            try {
+                await navigator.clipboard.writeText(text);
+                
+                // 创建或重用提示元素
+                if (!copyToast) {
+                    copyToast = createCopyToast();
+                }
+                
+                // 计算位置 - 显示在点击元素附近
+                const rect = element.getBoundingClientRect();
+                copyToast.style.left = `${rect.left + rect.width / 2}px`;
+                copyToast.style.top = `${rect.top - 30}px`;
+                
+                // 显示提示
+                copyToast.classList.add('visible');
+                
+                // 添加点击反馈效果
+                element.classList.add('copied');
+                
+                // 设置定时器隐藏提示
+                setTimeout(() => {
+                    copyToast.classList.remove('visible');
+                    element.classList.remove('copied');
+                }, 1500);
+                
+                return true;
+            } catch (error) {
+                console.error('复制到剪贴板失败:', error);
+                return false;
+            }
+        }
+
         function createIconCard(icon) {
             const card = document.createElement('div');
             card.className = 'icon-card';
@@ -554,6 +668,17 @@
                     const iconElement = document.createElement('aviala-icon');
                     iconElement.setAttribute('name', icon.name);
                     iconElement.setAttribute('mode', mode);
+                    
+                    // 添加点击事件
+                    iconElement.style.cursor = 'pointer';
+                    iconElement.title = `点击复制 ${icon.name} (${mode}) SVG`;
+                    iconElement.addEventListener('click', async () => {
+                        const svgContent = await getSvgContent(icon.name, mode);
+                        if (svgContent) {
+                            copyToClipboard(svgContent, iconElement);
+                        }
+                    });
+                    
                     modeContainer.appendChild(iconElement);
                 }
                 displayDiv.appendChild(modeContainer);
@@ -565,6 +690,17 @@
                 const iconElement = document.createElement('aviala-icon');
                 iconElement.setAttribute('name', icon.name);
                 iconElement.setAttribute('mode', 'colorful');
+                
+                // 添加点击事件
+                iconElement.style.cursor = 'pointer';
+                iconElement.title = `点击复制 ${icon.name} (colorful) SVG`;
+                iconElement.addEventListener('click', async () => {
+                    const svgContent = await getSvgContent(icon.name, 'colorful');
+                    if (svgContent) {
+                        copyToClipboard(svgContent, iconElement);
+                    }
+                });
+                
                 colorfulContainer.appendChild(iconElement);
             }
             // 添加 colorful 变体到同一个容器
@@ -573,6 +709,17 @@
                 const variantElement = document.createElement('aviala-icon');
                 variantElement.setAttribute('name', icon.name);
                 variantElement.setAttribute('mode', variant);
+                
+                // 添加点击事件
+                variantElement.style.cursor = 'pointer';
+                variantElement.title = `点击复制 ${icon.name} (${variant}) SVG`;
+                variantElement.addEventListener('click', async () => {
+                    const svgContent = await getSvgContent(icon.name, variant);
+                    if (svgContent) {
+                        copyToClipboard(svgContent, variantElement);
+                    }
+                });
+                
                 colorfulContainer.appendChild(variantElement);
             });
             displayDiv.appendChild(colorfulContainer);
@@ -584,6 +731,17 @@
                     const iconElement = document.createElement('aviala-icon');
                     iconElement.setAttribute('name', icon.name);
                     iconElement.setAttribute('mode', mode);
+                    
+                    // 添加点击事件
+                    iconElement.style.cursor = 'pointer';
+                    iconElement.title = `点击复制 ${icon.name} (${mode}) SVG`;
+                    iconElement.addEventListener('click', async () => {
+                        const svgContent = await getSvgContent(icon.name, mode);
+                        if (svgContent) {
+                            copyToClipboard(svgContent, iconElement);
+                        }
+                    });
+                    
                     modeContainer.appendChild(iconElement);
                 }
                 displayDiv.appendChild(modeContainer);
