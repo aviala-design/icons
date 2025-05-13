@@ -9,7 +9,7 @@
 
 # A customizable icon library with support for multiple styles.
 
-🎉 There are **𝟷𝟶𝟶𝟶+** icons available 🎉
+🎉 **𝟷𝟶𝟶𝟶+** icons available 🎉
 
 [`Preview`](https://aviala-design-icons.github.io) [`Get`](https://www.npmjs.com/package/@aviala-design/icons) [`DesignSources`](https://js.design/community?category=teamHome&id=633a635990e635c1991ee5fb)
 </div>
