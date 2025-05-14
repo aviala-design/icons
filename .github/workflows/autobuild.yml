@@ -38,7 +38,7 @@ jobs:
         # TODO: 配置自定义域名
         
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'preview'
           
